@@ -1,0 +1,74 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.xml" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Data" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+
+//  导入MultipleOutputHelper.ttinclude文件
+<#@include file="$(SolutionDir)\T4\MultipleOutputHelper.ttinclude"#> 
+
+<#        
+        string connectionString= Manager.appcon;        
+        SqlConnection conn = new SqlConnection(connectionString);
+        conn.Open();
+    
+        string selectQuery ="SET FMTONLY ON; select * from @tableName; SET FMTONLY OFF;";
+        SqlCommand command = new SqlCommand(selectQuery,conn);
+        SqlDataAdapter ad = new SqlDataAdapter(command);
+        System.Data.DataSet ds = new DataSet(); 
+  
+        var manager = Manager.Create(Host, GenerationEnvironment);  
+        System.Data.DataTable schema = conn.GetSchema("Tables");
+		string createtime=DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        foreach(System.Data.DataRow row in schema.Rows)
+        {    
+            ds.Tables.Clear();
+            string tb_name= row["TABLE_NAME"].ToString();        
+            command.CommandText = selectQuery.Replace("@tableName",row["TABLE_NAME"].ToString());
+            ad.FillSchema(ds, SchemaType.Mapped,tb_name);  
+            manager.StartNewFile(tb_name+".cs");#>
+/*******************************************************************************************
+ * 此代码由T4模板自动生成
+ * 对此文件的更改可能会导致不正确的行为，并且如果
+ * 重新生成代码，这些更改将会丢失。
+ * 日期:<#=createtime#>
+ * 作者:huijun zhu<kngcbzdsn@outlook.com> 
+ * 此技术信息为本公司机密信息，未经本公司书面同意禁止向第三方披露．　                   
+ * 版权所有：榆钱（北京）科技有限公司　　　　　　          
+ * 此模板生成实体层:Rainbow.Models　　　　　                 
+ * *******************************************************************************************/
+using System;
+using System.Collections.Generic;
+namespace Rainbow.Models
+{    
+    /// <summary>
+    /// 实体-<#=tb_name#> 
+    /// </summary>
+    public partial class <#=tb_name#>    
+    {    
+        <#
+        PushIndent("          ");
+
+        foreach (DataColumn dc in ds.Tables[0].Columns) 
+        {
+			StringBuilder sb=new StringBuilder();
+			sb.Append("public ");
+			string typename=Manager.GetRealType(dc.DataType.Name);
+            sb.Append( typename +" ");
+			sb.Append(dc.ColumnName + " { get; set; }");
+			WriteLine(sb.ToString());
+        }
+        PopIndent();
+        #>
+    }
+}
+    
+<#
+        manager.EndBlock();    
+         }            
+        conn.Close();  
+       manager.Process(true);  
+#>

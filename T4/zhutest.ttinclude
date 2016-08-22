@@ -1,0 +1,17 @@
+<#@ import namespace="System.Collections.Generic"#>
+<#@ import namespace="System.IO"#>
+<#@ import namespace="System.Text"#>
+<#+
+class ZhuTest
+{
+	public string ToCamelCase(string value)
+    {
+        if(string.IsNullOrEmpty(value)) 
+            return string.Empty;
+        
+        string firstLetter = value.Substring(0, 1);
+        string rest = value.Substring(1, value.Length - 1);
+        return firstLetter.ToLower() + rest;
+    }
+}
+#>
