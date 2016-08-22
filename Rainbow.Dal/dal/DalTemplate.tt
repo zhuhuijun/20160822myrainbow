@@ -69,6 +69,22 @@ namespace Rainbow.Dal
 				return ret > 0;
             }
         }
+        /// <summary>
+        /// 按照条件修改
+        /// </summary>
+        /// <param name="wherelm">条件</param>
+        /// <param name="data">数据</param>
+        /// <returns></returns>
+		public bool  EditWhere(dynamic wherelm, dynamic data)
+		{
+		    using (var sqlConnection = ContextFactory.GetContext())
+            {
+                sqlConnection.Open();
+                var db = MyDatabase.Init(sqlConnection, commandTimeout: 5);
+                int ret = db.<#=tb_name#>s.UpdateWhere(wherelm,data);
+				return ret > 0;
+            }
+		}
 		/// <summary>
         /// 插入记录
         /// </summary>

@@ -2,7 +2,7 @@
  * 此代码由T4模板自动生成
  * 对此文件的更改可能会导致不正确的行为，并且如果
  * 重新生成代码，这些更改将会丢失。
- * 日期:2016-08-22 17:04:09
+ * 日期:2016-08-22 17:33:25
  * 作者:huijun zhu<kngcbzdsn@outlook.com> 
  * 此技术信息为本公司机密信息，未经本公司书面同意禁止向第三方披露．　                   
  * 版权所有：榆钱（北京）科技有限公司　　　　　　          
@@ -37,6 +37,22 @@ namespace Rainbow.Dal
 				return ret > 0;
             }
         }
+        /// <summary>
+        /// 按照条件修改
+        /// </summary>
+        /// <param name="wherelm">条件</param>
+        /// <param name="data">数据</param>
+        /// <returns></returns>
+		public bool  EditWhere(dynamic wherelm, dynamic data)
+		{
+		    using (var sqlConnection = ContextFactory.GetContext())
+            {
+                sqlConnection.Open();
+                var db = MyDatabase.Init(sqlConnection, commandTimeout: 5);
+                int ret = db.sys_roles.UpdateWhere(wherelm,data);
+				return ret > 0;
+            }
+		}
 		/// <summary>
         /// 插入记录
         /// </summary>

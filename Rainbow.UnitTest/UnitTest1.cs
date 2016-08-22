@@ -32,8 +32,19 @@ namespace Rainbow.UnitTest
         public void update()
         {
             Isys_roleDal roledal = new sys_roleDal();
+            string id = "3870b4c6-3991-4c46-bcad-ce2c3bf0b7c0";
+            var one = roledal.EditWhere(new { createtime = "2016-07-29 11:14:08.830" },new {rowname="owner2"});
+        }
+
+        /// <summary>
+        /// 修改方法
+        /// </summary>
+        [TestMethod]
+        public void update2()
+        {
+            Isys_roleDal roledal = new sys_roleDal();
             string id = "185f5e6d-490c-4347-a6cf-3d45bd95b8cb";
-            var one = roledal.Edit(id,new {rowname="owner"});
+            var one = roledal.Edit(id, new { rowname = "owner2" });
         }
     }
 }

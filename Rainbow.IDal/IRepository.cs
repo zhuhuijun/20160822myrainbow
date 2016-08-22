@@ -16,6 +16,13 @@ namespace Rainbow.IDal
         /// 更新数据实体到上下文
         /// </summary>
         bool Edit(string id,dynamic o);
+        /// <summary>
+        /// 根据条件修改
+        /// </summary>
+        /// <param name="wherelm">条件</param>
+        /// <param name="data">数据</param>
+        /// <returns></returns>
+        bool EditWhere(dynamic wherelm, dynamic data);
 
         /// <summary>
         /// 添加新数据
