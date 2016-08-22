@@ -91,7 +91,7 @@ namespace Dapper
             /// </summary>
             /// <param name="id"></param>
             /// <returns></returns>
-            public T Get(string id)
+            public T Get(TId id)
             {
                 return database.Query<T>("select * from " + TableName + " where Id = @id", new { id }).FirstOrDefault();
             }
@@ -135,7 +135,7 @@ namespace Dapper
             }
         }
 
-        public class Table<T> : Table<T, int>
+        public class Table<T> : Table<T, string>
         {
             public Table(Database<TDatabase> database, string likelyTableName)
                 : base(database, likelyTableName)

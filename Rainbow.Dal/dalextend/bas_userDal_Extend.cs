@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Rainbow.IDal;
@@ -16,7 +17,7 @@ namespace Rainbow.Dal
             {
                 sqlConnection.Open();
                 var db = MyDatabase.Init(sqlConnection, commandTimeout: 2);
-                bas_user one = db.bas_users.Get(id);
+                bas_user one =db.bas_users.Get("1");
                 return one;
             }
         }

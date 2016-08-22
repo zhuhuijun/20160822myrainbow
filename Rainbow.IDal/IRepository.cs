@@ -15,8 +15,7 @@ namespace Rainbow.IDal
         /// <summary>
         /// 更新数据实体到上下文
         /// </summary>
-        /// <param name="entity"></param>
-        void Edit(TEntity entity);
+        bool Edit(string id,dynamic o);
 
         /// <summary>
         /// 添加新数据
@@ -35,5 +34,11 @@ namespace Rainbow.IDal
         /// <param name="id">主键id</param>
         /// <returns></returns>
         TEntity GetById(string id);
+        /// <summary>
+        /// 删除数据
+        /// </summary>
+        /// <param name="id">主键</param>
+        /// <returns></returns>
+        bool Delete(string id);
     }
 }

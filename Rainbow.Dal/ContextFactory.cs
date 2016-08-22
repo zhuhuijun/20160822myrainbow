@@ -23,7 +23,7 @@ namespace Rainbow.Dal
         /// 获得连接
         /// </summary>
         /// <returns></returns>
-        public static SqlConnection GetContext()
+        public static SqlConnection GetContext1()
         {
             SqlConnection context = CallContext.GetData("OAContext") as SqlConnection;
             if (context == null)
@@ -31,6 +31,16 @@ namespace Rainbow.Dal
                 context = new SqlConnection(ConnectionString);
                 CallContext.SetData("OAContext", context);
             }
+            //SqlConnection context = new SqlConnection(ConnectionString);
+            return context;
+        }
+        /// <summary>
+        /// 获得连接的方法
+        /// </summary>
+        /// <returns></returns>
+        public static SqlConnection GetContext()
+        {
+            SqlConnection context = new SqlConnection(ConnectionString);
             return context;
         }
     }
