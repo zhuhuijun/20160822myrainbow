@@ -49,7 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dapper\Dapper.csproj">
-      <Project>{95a27e49-3900-48b7-95f3-d4487a052975}</Project>
+      <Project>{45567daa-4cc6-46fb-9d98-db97f1790c13}</Project>
       <Name>Dapper</Name>
     </ProjectReference>
   </ItemGroup>

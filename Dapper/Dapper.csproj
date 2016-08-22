@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{95A27E49-3900-48B7-95F3-D4487A052975}</ProjectGuid>
+    <ProjectGuid>{45567DAA-4CC6-46FB-9D98-DB97F1790C13}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Dapper</RootNamespace>

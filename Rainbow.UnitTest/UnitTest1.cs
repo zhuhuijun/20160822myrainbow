@@ -25,5 +25,15 @@ namespace Rainbow.UnitTest
             var one = roledal.GetById(id);
             bool ret =roledal.Delete(id);
         }
+        /// <summary>
+        /// 修改方法
+        /// </summary>
+        [TestMethod]
+        public void update()
+        {
+            Isys_roleDal roledal = new sys_roleDal();
+            string id = "185f5e6d-490c-4347-a6cf-3d45bd95b8cb";
+            var one = roledal.Edit(id,new {rowname="owner"});
+        }
     }
 }

@@ -61,10 +61,6 @@
       <Project>{4faca236-ed7c-4542-99e0-b22668d8b3cd}</Project>
       <Name>Dapper.Rainbow</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dapper\Dapper.csproj">
-      <Project>{95a27e49-3900-48b7-95f3-d4487a052975}</Project>
-      <Name>Dapper</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Rainbow.Dal\Rainbow.Dal.csproj">
       <Project>{7f099ce7-ca4e-427c-b91e-de96f919c1bf}</Project>
       <Name>Rainbow.Dal</Name>
