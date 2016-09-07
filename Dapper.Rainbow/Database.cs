@@ -104,7 +104,21 @@ namespace Dapper
             {
                 return database.Execute("delete from " + TableName + " where Id = @id", new { id }) > 0;
             }
-
+            /// <summary>
+            /// Update a record in the DB
+            /// </summary>
+            /// <param name="where"></param>
+            /// <param name="data"></param>
+            /// <returns></returns>
+            public int DeleteWhere(dynamic where)
+            {
+                List<string> keys = GetParamNames((object)where);
+                var b = new StringBuilder();
+                b.Append("DELETE FROM ").Append(TableName);
+                b.Append(" WHERE ").Append(string.Join(" AND ", keys.Select(p => p + " = @" + p)));
+                var parameters = new DynamicParameters(where);
+                return database.Execute(b.ToString(), parameters);
+            }
             /// <summary>
             /// Grab a record with a particular Id from the DB 
             /// </summary>

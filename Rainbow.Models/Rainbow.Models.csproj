@@ -44,6 +44,8 @@
     <Compile Include="bas_user.cs">
       <DependentUpon>ModelTextTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PageCriteria.cs" />
+    <Compile Include="Models\PageDataView.cs" />
     <Compile Include="ModelTextTemplate1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

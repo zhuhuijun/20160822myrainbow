@@ -11,15 +11,17 @@ namespace Rainbow.Dal
 {
     public partial class bas_userDal : Ibas_userDal
     {
-        public bas_user getById1(string id)
+        public void getById1(string id)
         {
-            using (var sqlConnection = ContextFactory.GetContext())
+            using (var sqlConnection =ContextFactory.GetContext())
             {
                 sqlConnection.Open();
                 var db = MyDatabase.Init(sqlConnection, commandTimeout: 2);
-                bas_user one =db.bas_users.Get("1");
-                return one;
+                var one = db.bas_users.All();
+                //db.bas_users.UpdateWhere(new {UserName = "Dapper"}, new {UserPwd = "vb"});
+
             }
+
         }
     }
 }

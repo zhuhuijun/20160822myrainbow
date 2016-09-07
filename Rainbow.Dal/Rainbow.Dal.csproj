@@ -64,6 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyDataBase.tt</DependentUpon>
     </Compile>
+    <Compile Include="PageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +84,10 @@
     <ProjectReference Include="..\Dapper.Rainbow\Dapper.Rainbow.csproj">
       <Project>{4faca236-ed7c-4542-99e0-b22668d8b3cd}</Project>
       <Name>Dapper.Rainbow</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dapper\Dapper.csproj">
+      <Project>{45567daa-4cc6-46fb-9d98-db97f1790c13}</Project>
+      <Name>Dapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\Rainbow.IDal\Rainbow.IDal.csproj">
       <Project>{fbe042aa-a5f3-49ff-998e-f1ea3521706b}</Project>

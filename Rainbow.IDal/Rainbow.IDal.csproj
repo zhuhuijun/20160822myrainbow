@@ -46,6 +46,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IDalTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Include="idal\Ibas_userDal_Extend.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Rainbow.Models;
 
 namespace Rainbow.IDal
 {
@@ -47,5 +48,19 @@ namespace Rainbow.IDal
         /// <param name="id">主键</param>
         /// <returns></returns>
         bool Delete(string id);
+        /// <summary>
+        /// 按照条件删除
+        /// </summary>
+        /// <param name="wherelm"></param>
+        /// <returns></returns>
+        bool DeleteWhere(dynamic wherelm);
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="criteria"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        PageDataView<TEntity> GetPageData(PageCriteria criteria, object param = null);
     }
 }

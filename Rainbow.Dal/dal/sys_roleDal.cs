@@ -2,7 +2,7 @@
  * 此代码由T4模板自动生成
  * 对此文件的更改可能会导致不正确的行为，并且如果
  * 重新生成代码，这些更改将会丢失。
- * 日期:2016-08-22 17:33:25
+ * 日期:2016-09-01 18:18:16
  * 作者:huijun zhu<kngcbzdsn@outlook.com> 
  * 此技术信息为本公司机密信息，未经本公司书面同意禁止向第三方披露．　                   
  * 版权所有：榆钱（北京）科技有限公司　　　　　　          
@@ -10,6 +10,9 @@
  * *******************************************************************************************/
 using System;
 using System.Collections.Generic;
+using Dapper;
+using System.Data;
+using System.Linq;
 using Rainbow.IDal;
 using Rainbow.Models;
 
@@ -120,7 +123,30 @@ namespace Rainbow.Dal
                 return  db.sys_roles.Delete(id);
             }
 		}
-
+		/// <summary>
+        /// 删除记录
+        /// </summary>
+        /// <param name="id">主键</param>
+        /// <returns></returns>
+        public bool DeleteWhere(dynamic wherelm)
+        {
+		    using (var sqlConnection = ContextFactory.GetContext())
+            {
+                sqlConnection.Open();
+                var db = MyDatabase.Init(sqlConnection, commandTimeout: 2);
+                return  db.sys_roles.DeleteWhere(wherelm)>0;
+            }
+		}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
+		public PageDataView<sys_role> GetPageData(PageCriteria criteria, object param = null)
+        {
+            return PageHelper.GetPageData<sys_role>(criteria, param);
+        }
     }
 }
     
