@@ -1,0 +1,113 @@
+﻿
+@{
+    Layout = null;
+}
+@model Rainbow.Models.bas_user
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @Styles.Render("~/bundles/modulescss")
+</head>
+<body>
+    <div class="wrapper wrapper-content animated fadeInUp">
+        <!-- 推广效果评估 -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5><i class="fa fa-tasks"></i> 系统用户管理</h5>
+                        <p class="pull-right">
+                            <button class="btn btn-success btn-xs op" op="add"><i class="fa fa-plus"></i> 新增</button>
+                            <button type="button" id="paixu" class="btn btn-primary btn-xs op" op="edit"><i class="fa fa-sort-amount-asc"></i> 修改</button>
+                            <button type="button"  class="btn btn-danger btn-xs op" op="delete"><i class="fa fa-sort-amount-asc"></i> 删除</button>
+                        </p>
+                    </div>
+                    <div class="ibox-content">
+                        <form class="form-horizontal clearfix" id="searchform">
+                            <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                                <label class="col-sm-4 control-label">适用设备</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="devices" name="devices">
+                                        <option value="">全部设备</option>
+                                        <option value="19">小米5</option>
+                                        <option value="22">iphone5s</option>
+                                        <option value="22">iphone6</option>
+                                        <option value="20">iphone6s-plus</option>
+                                        <option value="20">iphone7</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                                <label class="col-sm-4 control-label">状态</label>
+                                <div class="col-sm-8">
+                                    <select id="state" name="state" class="form-control">
+                                        <option value="">全部</option>
+                                        <option value="0">已发布内网</option>
+                                        <option value="1">已发布外网</option>
+                                        <option value="-1">已删除</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                                <label class="col-sm-4 control-label tr">用户名</label>
+
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" , @placeholder= "用户名" })
+                                    <input type="hidden" id="UserNameSearch" value="like" />  
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                                <div class="col-sm-12 col-sm-offset-2">
+                                    <button class="btn btn-primary op" type="button" op="search">查询</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <hr />
+
+                        <div class="jqGrid_wrapper">
+                            <table id="list4"></table>
+                            <div id="gridPager"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 内容部分end -->
+    </div>
+</body>
+<!-- 全局js -->
+@Scripts.Render("~/jquery")
+@Scripts.Render("~/bundles/modulejs")
+<script type="text/javascript">
+    $(function () {
+        //初始化jqgrid的样式
+        $.jgrid.defaults.styleUI = 'Bootstrap';
+        var gridid = "#list4";
+        //构造crud的对象
+        var mycrud = new crud('@Url.Action("GetData", "UserinfoManager")', gridid);
+        //表头
+        var coltitle = ['', '登陆名', '邮箱','电话号码'];
+        //表体列绑定
+        var cols = [
+                { name: 'id', index: 'id', hidden: true },
+                { name: 'UserName', index: 'UserName', width: 90 },
+                { name: 'Email', index: 'Email' },
+                { name: 'PhoneNum', index: 'PhoneNum' }];
+        //初始化表格的地方
+        mycrud.initTableCol(coltitle, cols);
+        //绑定页面的缩放事件
+        $(window).bind('resize', function () {
+            var width = $('.jqGrid_wrapper').width();
+            $(gridid).setGridWidth(width);
+        });
+    });
+</script>
+</html>

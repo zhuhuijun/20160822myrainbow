@@ -1,31 +1,142 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    Layout = null;
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!DOCTYPE html>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>安全施工</title>
+
+    @Styles.Render("~/main/css")
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+    <div id="wrapper">
+        <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="nav-close">
+                <i class="fa fa-times-circle"></i>
+            </div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="/OrginationInfo/Index"><i class="fa fa-sitemap"></i> <span class="nav-label">组织架构</span></a>
+                    </li>
+                    @*<li>
+                                <a class="J_menuItem" href="/Saftycheck/Index"><i class="fa fa-flag"></i> <span class="nav-label">执法人员管理</span></a>
+                        </li>
+                        <li>
+                                <a class="J_menuItem" href="/Unlawrecord/Show"><i class="fa fa-area-chart"></i> <span class="nav-label">每日执法公示</span></a>
+                        </li>*@
+                    <li>
+                        <a href="#">
+                            <i class="fa fa fa-flag"></i>
+                            <span class="nav-label">执法管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="/Saftycheck/Index"><i class="fa fa-flag"></i> <span class="nav-label">执法人员</span></a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="/Unlawrecord/Show"><i class="fa fa-area-chart"></i> <span class="nav-label">每日公示</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="/RewardsPunishments/Index"><i class="fa fa-area-chart"></i> <span class="nav-label">奖惩统计</span></a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa fa-flag"></i>
+                            <span class="nav-label">系统管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="/firmware.html6"><i class="fa fa-flag"></i> <span class="nav-label">员工管理</span></a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="/RoleInfo/Index"><i class="fa fa-area-chart"></i> <span class="nav-label">角色管理</span></a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="/UserinfoManager/Index"><i class="fa fa-area-chart"></i> <span class="nav-label">用户管理</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--左侧导航结束-->
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+
+                    </div>
+
+                </nav>
+            </div>
+            <div class="row content-tabs">
+                <button class="roll-nav roll-left J_tabLeft">
+                    <i class="fa fa-backward"></i>
+                </button>
+                <nav class="page-tabs J_menuTabs">
+                    <div class="page-tabs-content">
+                        <a href="javascript:;" class="active J_menuTab" data-id="/OrginationInfo/Index">首页</a>
+                    </div>
+                </nav>
+                <button class="roll-nav roll-right J_tabRight">
+                    <i class="fa fa-forward"></i>
+                </button>
+                <div class="btn-group roll-nav roll-right">
+                    <button class="dropdown J_tabClose" data-toggle="dropdown">
+                        关闭操作<span class="caret"></span>
+                    </button>
+                    <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                        <li class="J_tabShowActive">
+                            <a>定位当前选项卡</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="J_tabCloseAll">
+                            <a>关闭全部选项卡</a>
+                        </li>
+                        <li class="J_tabCloseOther">
+                            <a>关闭其他选项卡</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row J_mainContent" id="content-main">
+                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="/OrginationInfo/Index" frameborder="0" data-id="/OrginationInfo/Index" seamless></iframe>
+            </div>
+
+            <div class="footer">
+                <div class="pull-right">
+                    &copy; 2014-2015 <a href="http://www.zi-han.net/" target="_blank">zihan's blog</a>
+                </div>
+            </div>
+        </div>
+        <!--右侧部分结束-->
+
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+
+    <!-- 全局js -->
+    @Scripts.Render("~/jquery")
+    @Scripts.Render("~/mian/js")
+    <script src='@Url.Content("~/Scripts/myjs/mian.js")'></script>
+</body>
+
+</html>

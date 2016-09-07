@@ -66,7 +66,13 @@ namespace Rainbow.UnitTest
         [TestMethod]
         public void GetDbPage()
         {
-            var data = Bll2bas_user.GetPageData("id",1);
+            var data = Bll2bas_user.GetPageData("","id",1);
+        }
+        [TestMethod]
+        public void GetByPara()
+        {
+            string paras = "[{'paraname':'UserName','paravalue':'ap','searchop':''}]";
+            var datas = Bll2bas_user.GetPageData(paras,"id", 1);
         }
     }
 }

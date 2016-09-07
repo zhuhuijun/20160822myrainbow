@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rainbow.Bll", "Rainbow.Bll\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rainbow.UIs", "Rainbow.UIs\Rainbow.UIs.csproj", "{26363E70-DB3F-4986-9B0E-F81D659E57AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rainbow.Commons", "Rainbow.Commons\Rainbow.Commons.csproj", "{ABB78F74-1361-4E25-A66E-E8F8E6092CAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{26363E70-DB3F-4986-9B0E-F81D659E57AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26363E70-DB3F-4986-9B0E-F81D659E57AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26363E70-DB3F-4986-9B0E-F81D659E57AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABB78F74-1361-4E25-A66E-E8F8E6092CAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABB78F74-1361-4E25-A66E-E8F8E6092CAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABB78F74-1361-4E25-A66E-E8F8E6092CAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABB78F74-1361-4E25-A66E-E8F8E6092CAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

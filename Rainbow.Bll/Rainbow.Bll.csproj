@@ -64,6 +64,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Rainbow.Commons\Rainbow.Commons.csproj">
+      <Project>{abb78f74-1361-4e25-a66e-e8f8e6092cad}</Project>
+      <Name>Rainbow.Commons</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Rainbow.DalFactory\Rainbow.DalFactory.csproj">
       <Project>{929b5d54-38c6-4fdb-8c90-723bc677f30a}</Project>
       <Name>Rainbow.DalFactory</Name>

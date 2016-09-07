@@ -44,6 +44,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using Rainbow.Commons;
 using Rainbow.IDal;
 using Rainbow.Models;
 
@@ -67,17 +68,20 @@ namespace Rainbow.Bll
         /// <summary>
         /// 分页数据
         /// </summary>
-        /// <param name="sortpara"></param>
-        /// <param name="currentpage"></param>
-        /// <param name="pagesize"></param>
-		public static PageDataView<<#=tb_name#>> GetPageData(string sortpara,int currentpage,int pagesize=15)
+		/// <param name="conwhere">条件</param>
+        /// <param name="sortpara">排序字段</param>
+        /// <param name="currentpage">当前页</param>
+        /// <param name="pagesize">每页的数量默认是15条</param>
+		public static PageDataView<<#=tb_name#>> GetPageData(string conwhere,string sortpara,int currentpage,int pagesize=15)
         {
+		   string wheresql= SearchHelper.GetSearchParaSql(conwhere);
             PageCriteria criteria = new PageCriteria()
             {
                 TableName = "<#=tb_name#>",
                 PageSize = pagesize,
                 CurrentPage = currentpage,
-				Sort = sortpara
+				Sort = sortpara,
+				Condition = wheresql
             };
             object param = null;
             return DalFactory.Create<#=tb_name#>().GetPageData(criteria, param);
