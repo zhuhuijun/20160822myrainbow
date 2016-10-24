@@ -1,0 +1,34 @@
+﻿
+@{
+    Layout = null;
+}
+@model Rainbow.Models.sys_role
+<form id="formui">
+    @Html.HiddenFor(m=>m.id)
+    @Html.HiddenFor(m => m.createtime)
+    <div class="modal-body form-horizontal">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">角色名称:</label>
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.rowname, new Dictionary<string, object>
+                        () {{"required", ""}, {"class", "form-control"}})
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">角色描述:</label>
+                <div class="col-sm-9">
+                    @Html.TextAreaFor(m => m.remarks, new Dictionary<string, object>
+                        () {{"required", ""}, {"class", "form-control"}})
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <div class="hr-line-dashed"></div>
+</form>

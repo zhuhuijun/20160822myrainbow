@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Dapper
 {
-    partial class SqlMapper
+  public  partial class SqlMapper
     {
         private sealed class DapperTable
         {

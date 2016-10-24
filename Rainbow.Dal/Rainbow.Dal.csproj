@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper">
+      <HintPath>..\Assembly\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -44,12 +47,19 @@
   <ItemGroup>
     <Compile Include="ContextFactory.cs" />
     <Compile Include="dalextend\bas_userDal_Extend.cs" />
+    <Compile Include="dalextend\sys_menuDal_Extend.cs" />
     <Compile Include="dal\bas_userDal.cs">
       <DependentUpon>DalTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="dal\DalTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>DalTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dal\rel_menuactionsDal.cs">
+      <DependentUpon>DalTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dal\sys_actionDal.cs">
       <DependentUpon>DalTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="dal\sys_menuDal.cs">
@@ -84,10 +94,6 @@
     <ProjectReference Include="..\Dapper.Rainbow\Dapper.Rainbow.csproj">
       <Project>{4faca236-ed7c-4542-99e0-b22668d8b3cd}</Project>
       <Name>Dapper.Rainbow</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dapper\Dapper.csproj">
-      <Project>{45567daa-4cc6-46fb-9d98-db97f1790c13}</Project>
-      <Name>Dapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\Rainbow.IDal\Rainbow.IDal.csproj">
       <Project>{fbe042aa-a5f3-49ff-998e-f1ea3521706b}</Project>

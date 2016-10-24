@@ -126,6 +126,7 @@ namespace Rainbow.Dal
                 return result;
             }
         }
+
 	    /// <summary>
         /// 根据主键获得数据
         /// </summary>
@@ -155,10 +156,10 @@ namespace Rainbow.Dal
                 return  db.<#=tb_name#>s.Delete(id);
             }
 		}
-		/// <summary>
+        /// <summary>
         /// 删除记录
         /// </summary>
-        /// <param name="id">主键</param>
+        /// <param name="wherelm">条件</param>
         /// <returns></returns>
         public bool DeleteWhere(dynamic wherelm)
         {
@@ -179,6 +180,38 @@ namespace Rainbow.Dal
         {
             return PageHelper.GetPageData<<#=tb_name#>>(criteria, param);
         }
+		
+		/// <summary>
+        /// 按照条件查询
+        /// </summary>
+        /// <param name="wherela"></param>
+        /// <returns></returns>
+		public IEnumerable<<#=tb_name#>> GetWhere(dynamic wherela)
+		{
+			using (var sqlConnection = ContextFactory.GetContext())
+            {
+                sqlConnection.Open();
+                var db = MyDatabase.Init(sqlConnection, commandTimeout: 5);
+                var result = db.<#=tb_name#>s.GetWhere(wherela);
+                return result;
+            }
+		}
+        /// <summary>
+        /// 按条件获得数量
+        /// </summary>
+        /// <param name="wherela"></param>
+        /// <returns></returns>
+		public int GetWhereCount(dynamic wherela)
+		{
+			using (var sqlConnection = ContextFactory.GetContext())
+            {
+                sqlConnection.Open();
+                var db = MyDatabase.Init(sqlConnection, commandTimeout: 5);
+                var result = db.<#=tb_name#>s.GetWhereCount(wherela);
+                return result;
+            }
+		}
+		
     }
 }
     

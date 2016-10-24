@@ -89,11 +89,39 @@ namespace Dapper
                 var b = new StringBuilder();
                 b.Append("UPDATE ").Append(TableName).Append(" SET ");
                 b.AppendLine(string.Join(",", paramNames.Select(p => p + "= @" + p)));
-                b.Append(" WHERE ").Append(string.Join(" AND ", keys.Select(p =>  p + " = @" + p)));
+                b.Append(" WHERE ").Append(string.Join(" AND ", keys.Select(p => p + " = @" + p)));
 
                 var parameters = new DynamicParameters(data);
                 parameters.AddDynamicParams(where);
                 return database.Execute(b.ToString(), parameters);
+            }
+            /// <summary>
+            /// 按照实体条件查询
+            /// </summary>
+            /// <param name="where"></param>
+            /// <returns></returns>
+            public IEnumerable<T> GetWhere(dynamic where)
+            {
+                List<string> keys = GetParamNames((object)where);
+                var b = new StringBuilder();
+                b.Append("SELECT * FROM  ").Append(TableName);
+                b.Append(" WHERE ").Append(string.Join(" AND ", keys.Select(p => p + " = @" + p)));
+                var parameters = new DynamicParameters(where);
+                return database.Query<T>(b.ToString(), parameters);
+            }
+            /// <summary>
+            /// 按照条件获得数量
+            /// </summary>
+            /// <param name="where"></param>
+            /// <returns></returns>
+            public int GetWhereCount(dynamic where)
+            {
+                List<string> keys = GetParamNames((object)where);
+                var b = new StringBuilder();
+                b.Append("SELECT COUNT(id) FROM  ").Append(TableName);
+                b.Append(" WHERE ").Append(string.Join(" AND ", keys.Select(p => p + " = @" + p)));
+                var parameters = new DynamicParameters(where);
+                return database.Query<int>(b.ToString(), parameters).Single();
             }
             /// <summary>
             /// Delete a record for the DB

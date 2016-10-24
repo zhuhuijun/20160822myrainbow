@@ -17,10 +17,6 @@ using Rainbow.Models;
 	public partial class MyDatabase : Database<MyDatabase>
      {
   	 /// <summary>
-     /// 定义bas_user
-     /// </summary>
-	 public Table<bas_user> bas_users { get; set; }
-	 /// <summary>
      /// 定义sys_menu
      /// </summary>
 	 public Table<sys_menu> sys_menus { get; set; }
@@ -28,5 +24,17 @@ using Rainbow.Models;
      /// 定义sys_role
      /// </summary>
 	 public Table<sys_role> sys_roles { get; set; }
+	 /// <summary>
+     /// 定义bas_user
+     /// </summary>
+	 public Table<bas_user> bas_users { get; set; }
+	 /// <summary>
+     /// 定义sys_action
+     /// </summary>
+	 public Table<sys_action> sys_actions { get; set; }
+	 /// <summary>
+     /// 定义rel_menuactions
+     /// </summary>
+	 public Table<rel_menuactions> rel_menuactionss { get; set; }
 	}
    }

@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+@model Rainbow.Models.sys_action
+<form id="formui">
+    <div class="modal-body form-horizontal">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">行为编码:</label>
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.actioncode, new Dictionary<string, object>
+                        () { { "required", "" }, { "class", "form-control" }, { "placeholder","行为编码" } })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">行为名称:</label>
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.actionname, new Dictionary<string, object>
+                        () { { "required", "" }, { "class", "form-control" }, { "placeholder", "行为名称" } })
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="hr-line-dashed"></div>
+</form>

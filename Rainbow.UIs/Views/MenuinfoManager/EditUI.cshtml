@@ -1,0 +1,50 @@
+﻿
+@{
+    Layout = null;
+}
+@model Rainbow.Models.sys_menu
+<form id="formui">
+    <input type="hidden" id="pid" name="pid" value="0"/>
+    @Html.HiddenFor(m=>m.id)
+    <div class="modal-body form-horizontal">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">父级菜单:</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <input type="text" id="pidname" name="pidname" value="@ViewBag.pidname" class="form-control" placeholder="父级菜单" readonly />
+
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="button" op="menutree">选择</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">菜单名称:</label>
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.menuname, new Dictionary<string, object>
+                        () { { "required", "" }, { "placeholder", "菜单名称" }, { "class", "form-control" } })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">路由名称:</label>
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.urlaction, new Dictionary<string, object>
+                        () { { "placeholder", "路由名称(用于导航到固定页面)" }, { "class", "form-control" } })
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="hr-line-dashed"></div>
+</form>

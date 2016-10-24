@@ -41,19 +41,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDalTemplate.cs">
+    <Compile Include="extends\Ibas_userDal_Extend.cs" />
+    <Compile Include="extends\Isys_menuDal_Extend.cs" />
+    <Compile Include="idal\bas_userDal.cs">
+      <DependentUpon>IDalNewTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="idal\IDalNewTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>IDalTemplate.tt</DependentUpon>
+      <DependentUpon>IDalNewTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="idal\Ibas_userDal_Extend.cs" />
-    <Compile Include="IRepository.cs" />
+    <Compile Include="idal\rel_menuactionsDal.cs">
+      <DependentUpon>IDalNewTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="idal\sys_actionDal.cs">
+      <DependentUpon>IDalNewTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="idal\sys_menuDal.cs">
+      <DependentUpon>IDalNewTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="idal\sys_roleDal.cs">
+      <DependentUpon>IDalNewTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="IDalTemplate.tt">
+    <Content Include="idal\IDalNewTemplate.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>IDalTemplate.cs</LastGenOutput>
+      <LastGenOutput>IDalNewTemplate.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -48,13 +48,15 @@ namespace Rainbow.UIs
             bundles.Add(new ScriptBundle("~/bundles/modulejs").Include(
             "~/Scripts/bootstrap.min.js",
             "~/Scripts/plugins/toastr/toastr.min.js",
-            "~/Scripts/plugins/jqgrid/jquery.jqGrid.min.js",
+            "~/Scripts/plugins/jquery-ui/jquery-ui.min.js",
+            "~/Scripts/plugins/jqgrid/grid.treegrid.js",
             "~/Scripts/plugins/jqgrid/i18n/grid.locale-cnffe4.js",
+            "~/Scripts/plugins/jqgrid/jquery.jqGrid.min.js",
             "~/Scripts/plugins/peity/jquery.peity.min.js",
             "~/Scripts/plugins/layer/layer.min.js",
             "~/Scripts/plugins/sweetalert/sweetalert-dev.js",//弹窗的js
             "~/Scripts/plugins/validate/jquery.validate.min.js",//表单验证的脚本
-            "~/Scripts/plugins/validate/message_zh.min.js",//表单验证的脚本
+            "~/Scripts/plugins/validate/messages_zh.min.js",//表单验证的脚本
             "~/Scripts/myjs/commoncrud.js"//
             ));
         }

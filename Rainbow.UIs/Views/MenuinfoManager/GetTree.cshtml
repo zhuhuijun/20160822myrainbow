@@ -1,0 +1,81 @@
+﻿@using System.Text
+@using Rainbow.Models
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>菜单列表</title>
+    <link href='@Url.Content("~/css/ztree/metroStyle/metroStyle.css")' rel="stylesheet" />
+    <script src='@Url.Content("~/Scripts/jquery.min.js")'></script>
+    <script src='@Url.Content("~/Scripts/ztree/jquery.ztree.core.js")'></script>
+</head>
+<body>
+    <div id="menuContent">
+        <ul id="treeDemo" class="ztree" style="margin-top: 0; width: 380px;"></ul>
+    </div>
+    <script type="text/javascript">
+        (function () {
+            var app = {
+                treesetting: {
+                    view: {
+                        dblClickExpand: false
+                    },
+                    data: {
+                        simpleData: {
+                            enable: true
+                        }
+                    },
+                    callback: {
+                        onClick: function (e, treeId, treeNode) {
+                            if (parent.hasOwnProperty("RceiveTreeData")) {
+                                parent.RceiveTreeData(treeNode.id, treeNode.name);
+                            }
+                        }
+                    }
+                },
+                treedata: [
+                    @{
+                    List<sys_menu> datas = (List<sys_menu>)ViewBag.TreeData;
+                    int iicount = datas.Count();
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < iicount; i++)
+                    {
+                        sys_menu one = datas[i];
+                        if (i != iicount - 1)
+                        {
+                            sb.Append("{");
+                            sb.AppendFormat("id:'{0}',pId:'{1}',name:'{2}' ", one.id, one.pid, one.menuname);
+                            sb.Append(" },");
+                        }
+                        else
+                        {
+                            sb.Append("{");
+                            sb.AppendFormat("id:'{0}',pId:'{1}',name:'{2}' ", one.id, one.pid, one.menuname);
+                            sb.Append(" }");
+                        }
+                        @Html.Raw(sb.ToString());
+                        sb.Clear();
+                    }
+                }
+
+                ],
+                init: function () {
+                    var that = this;
+                    //初始化树形的结构
+                    $.fn.zTree.init($("#treeDemo"), that.treesetting, that.treedata);
+                    $.fn.zTree.getZTreeObj("treeDemo").expandAll(true);
+                }
+            };
+            $(function () {
+                app.init();
+            });
+        })();
+    </script>
+</body>
+
+</html>

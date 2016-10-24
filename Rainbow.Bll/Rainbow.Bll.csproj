@@ -44,6 +44,12 @@
     <Compile Include="Bll\Bll2bas_user.cs">
       <DependentUpon>BllTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Include="Bll\Bll2rel_menuactions.cs">
+      <DependentUpon>BllTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bll\Bll2sys_action.cs">
+      <DependentUpon>BllTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Include="Bll\Bll2sys_menu.cs">
       <DependentUpon>BllTemplate.tt</DependentUpon>
     </Compile>
@@ -55,12 +61,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BllTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Include="Bll\BllTemplate1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BllTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="extends\Bll2sys_menu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Bll\BllTemplate.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BllTemplate.cs</LastGenOutput>
+      <LastGenOutput>BllTemplate1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -17,14 +17,6 @@ using Rainbow.Dal;
 	public class DalFactory
 	{
 	  		/// <summary>
-		/// Ibas_userDal的工厂实现
-		/// </summary>
-		public  static Ibas_userDal Createbas_user()
-		{
-			Ibas_userDal tmp=new bas_userDal();
-			return tmp;
-		}
-			/// <summary>
 		/// Isys_menuDal的工厂实现
 		/// </summary>
 		public  static Isys_menuDal Createsys_menu()
@@ -38,6 +30,30 @@ using Rainbow.Dal;
 		public  static Isys_roleDal Createsys_role()
 		{
 			Isys_roleDal tmp=new sys_roleDal();
+			return tmp;
+		}
+			/// <summary>
+		/// Ibas_userDal的工厂实现
+		/// </summary>
+		public  static Ibas_userDal Createbas_user()
+		{
+			Ibas_userDal tmp=new bas_userDal();
+			return tmp;
+		}
+			/// <summary>
+		/// Isys_actionDal的工厂实现
+		/// </summary>
+		public  static Isys_actionDal Createsys_action()
+		{
+			Isys_actionDal tmp=new sys_actionDal();
+			return tmp;
+		}
+			/// <summary>
+		/// Irel_menuactionsDal的工厂实现
+		/// </summary>
+		public  static Irel_menuactionsDal Createrel_menuactions()
+		{
+			Irel_menuactionsDal tmp=new rel_menuactionsDal();
 			return tmp;
 		}
 	

@@ -74,5 +74,10 @@ namespace Rainbow.UnitTest
             string paras = "[{'paraname':'UserName','paravalue':'ap','searchop':''}]";
             var datas = Bll2bas_user.GetPageData(paras,"id", 1);
         }
+        [TestMethod]
+        public void GetByPara2()
+        {
+            //int f=Bll2bas_user.GetWhereCount(null);
+        }
     }
 }

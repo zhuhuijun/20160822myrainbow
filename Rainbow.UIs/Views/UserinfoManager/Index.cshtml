@@ -23,7 +23,7 @@
                         <p class="pull-right">
                             <button class="btn btn-success btn-xs op" op="add"><i class="fa fa-plus"></i> 新增</button>
                             <button type="button" id="paixu" class="btn btn-primary btn-xs op" op="edit"><i class="fa fa-sort-amount-asc"></i> 修改</button>
-                            <button type="button"  class="btn btn-danger btn-xs op" op="delete"><i class="fa fa-sort-amount-asc"></i> 删除</button>
+                            <button type="button" class="btn btn-danger btn-xs op" op="delete"><i class="fa fa-sort-amount-asc"></i> 删除</button>
                         </p>
                     </div>
                     <div class="ibox-content">
@@ -31,7 +31,7 @@
                             <div class="form-group col-xs-12 col-sm-6 col-md-3">
                                 <label class="col-sm-4 control-label">适用设备</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control" id="devices" name="devices">
+                                    <select class="form-control" id="devices" >
                                         <option value="">全部设备</option>
                                         <option value="19">小米5</option>
                                         <option value="22">iphone5s</option>
@@ -57,8 +57,8 @@
                                 <label class="col-sm-4 control-label tr">用户名</label>
 
                                 <div class="col-sm-8">
-                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" , @placeholder= "用户名" })
-                                    <input type="hidden" id="UserNameSearch" value="like" />  
+                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "用户名" })
+                                    <input type="hidden" id="UserNameSearch" value="like" />
                                 </div>
                             </div>
 
@@ -92,9 +92,9 @@
         $.jgrid.defaults.styleUI = 'Bootstrap';
         var gridid = "#list4";
         //构造crud的对象
-        var mycrud = new crud('@Url.Action("GetData", "UserinfoManager")', gridid);
+        var mycrud = new crud('@Url.Action("GetData", "UserinfoManager")');
         //表头
-        var coltitle = ['', '登陆名', '邮箱','电话号码'];
+        var coltitle = ['', '登陆名', '邮箱', '电话号码'];
         //表体列绑定
         var cols = [
                 { name: 'id', index: 'id', hidden: true },

@@ -1,0 +1,119 @@
+﻿
+@{
+    Layout = null;
+}
+@model Rainbow.Models.sys_menu
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Main</title>
+
+    <link href="~/Scripts/treegrid/jquery.ui.css" rel="stylesheet" />
+    <link href="~/Scripts/treegrid/jquery.jqgrid.css" rel="stylesheet" />
+    @Styles.Render("~/bundles/modulescss")
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/myjs/supportbrowser.js"></script>
+    <script src="~/Scripts/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/Scripts/treegrid/js/i18n/grid.locale-cn.js"></script>
+    <script src="~/Scripts/treegrid/js/jquery.jqgrid.js"></script>
+    <script src="~/Scripts/plugins/layer/layer.min.js"></script>
+    <script src="~/Scripts/plugins/validate/jquery.validate.min.js"></script>
+    <script src="~/Scripts/plugins/validate/messages_zh.min.js"></script>
+    <style type="text/css">
+        tr, td {
+            height: 30px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#list4').jqGrid({
+                url: '@Url.Action("GetData","MenuinfoManager")',
+                datatype: 'json',
+                mtype: 'GET',
+                treeGrid: true,
+                treeGridModel: 'adjacency',
+                ExpandColumn: 'menuname',
+                colNames: ['id', '菜单名称', '路由地址', 'ParentID'],
+                colModel: [
+                { name: 'id', index: 'id', hidden: true, width: 1, key: true },
+                { name: 'menuname', index: 'menuname', width: 200, fixed: true },
+                { name: 'urlaction', index: 'urlaction', width: 100 },
+                { name: 'pid', index: 'pid', hidden: true, width: 1 }
+                ],
+                autowidth: true,
+                onSelectRow: function (id) {
+                    window.GridSelectedid = id;
+                },
+                height: 'auto'
+            });
+            $("#list").closest(".ui-jqgrid-bdiv").css({ 'overflow-x': 'hidden' });
+            $(window).bind('resize', function () {
+                var width = $('.jqGrid_wrapper').width();
+                $('#list4').setGridWidth(width);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="wrapper wrapper-content animated fadeInUp">
+        <!-- 推广效果评估 -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5><i class="fa fa-tasks"></i> 系统菜单管理</h5>
+                        <p class="pull-right">
+                            <button class="btn btn-success btn-xs op" op="add"><i class="fa fa-plus"></i> 新增</button>
+                            <button type="button" id="paixu" class="btn btn-primary btn-xs op" op="edit"><i class="fa fa-sort-amount-asc"></i> 修改</button>
+                            <button type="button" class="btn btn-danger btn-xs op" op="delete"><i class="fa fa-sort-amount-asc"></i> 删除</button>
+                            <button type="button" class="btn btn-info btn-xs op" op="act"><i class="fa fa-sort-amount-desc"></i> 分配行为</button>
+
+                        </p>
+                    </div>
+                    <div class="ibox-content">
+                        <form class="form-horizontal clearfix" id="searchform" style="margin-bottom: 10px;">
+                            <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                                <label class="col-sm-4 control-label">路由名称</label>
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(m => m.urlaction, new { @class = "form-control", @placeholder = "路由名称" })
+                                    <input type="hidden" id="urlactionSearch" value="like" />
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                                <label class="col-sm-4 control-label tr">菜单名称</label>
+
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(m => m.menuname, new {@class = "form-control", @placeholder = "菜单名称"})
+                                    <input type="hidden" id="menunameSearch" value="like" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                                <div class="col-sm-12 col-sm-offset-2">
+                                    <button class="btn btn-primary op" type="button" op="search">查询</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <hr />
+
+                        <div class="jqGrid_wrapper">
+                            <table id="list4"></table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 内容部分end -->
+    </div>
+    <script src="~/Scripts/myjs/menucrud.js"></script>
+</body>
+
+</html>

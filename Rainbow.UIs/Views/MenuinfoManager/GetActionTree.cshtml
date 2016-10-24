@@ -1,0 +1,98 @@
+﻿@using System.Text
+@using Rainbow.Models
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>菜单列表</title>
+    @Styles.Render("~/bundles/modulescss")
+    <style type="text/css">
+        .checkboxver {
+            _vertical-align: -1px;
+            vertical-align: -2px;
+            font-size: 12px;
+            font-family: tahoma;
+            margin-top: -2px;
+            margin-bottom: 3px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .checkboxverLA {
+            vertical-align: middle;
+            font: 12px/1.231 Arial, Times New Roman, Verdana;
+            font-size: 12px;
+            font-family: tahoma;
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+    @{
+        List<sys_menu> nochilds = (List<sys_menu>)ViewBag.NoChilds;
+        List<sys_action> actions = (List<sys_action>)ViewBag.Actions;
+    }
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5><i class="fa fa-tasks"></i> 菜单按钮配置</h5>
+                    <p class="pull-right">
+
+                    </p>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>菜单名称</th>
+                                    <th>按钮选项</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (var one in nochilds)
+                                    {
+                                        <tr>
+                                            <td>@one.menuname</td>
+                                            <td>
+                                                @{
+                                                    foreach (var act in actions)
+                                                    {
+                                                        <input type="checkbox" class="checkboxver" value="@act.id"><label class="checkboxverLA">@act.actionname</label>
+                                                    }
+                                                }
+                                            </td>
+                                            <td><button type="button" class="btn btn-success btn-xs" onclick='javascript:saveOneMenu("@one.id",this);'> 保存</button></td>
+                                        </tr>
+                                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/jquery")
+    @Scripts.Render("~/bundles/modulejs")
+    <script type="text/javascript">
+        var saveOneMenu = function (menuid,cur) {
+            alert($(cur).parent().prev().find("input[type='checkbox']:checked").length);
+            console.info(menuid);
+            //获得当前选中的按钮的值
+            //当前的菜单的值
+            layer.msg('dddddddddddd', { icon: 6 });
+        };
+    </script>
+</body>
+
+</html>

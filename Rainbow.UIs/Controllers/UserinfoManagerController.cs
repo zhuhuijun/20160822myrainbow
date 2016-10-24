@@ -27,7 +27,6 @@ namespace Rainbow.UIs.Controllers
             string requestStringPar = Request["customPar"];
             string page = Request["page"];//当前页
             int pageIndex = Convert.ToInt32(page);//当前页
-            string paras = "[{'paraname':'UserName','paravalue':'ap','searchop':''}]";
             PageDataView<bas_user> datas = Bll2bas_user.GetPageData(requestStringPar, "id", 1);
             var pm = new 
             {
@@ -37,6 +36,46 @@ namespace Rainbow.UIs.Controllers
                 rows = datas.Items
             };
             return Json(pm, JsonRequestBehavior.AllowGet);
+        }
+        /// <summary>
+        /// 添加用户的界面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AddUI()
+        {
+            bas_user user=new bas_user();
+            return View(user);
+        }
+        /// <summary>
+        /// 添加的方法
+        /// </summary>
+        /// <param name="one"></param>
+        /// <returns></returns>
+        public ActionResult Add(bas_user one)
+        {
+            one.id = Guid.NewGuid().ToString();
+            bool add = Bll2bas_user.Insert(one);
+            CRUDModel cm = CRUDModelHelper.GetRes(CRUD.ADD, add);
+            return Json(cm, JsonRequestBehavior.AllowGet);
+        }
+        /// <summary>
+        /// 删除记录
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Delete(string id)
+        {
+            CRUDModel cm = null;
+            if (string.IsNullOrEmpty(id))
+            {
+                cm = new CRUDModel();
+            }
+            else
+            {
+                bool del = Bll2bas_user.Delete(id);
+                cm = CRUDModelHelper.GetRes(CRUD.DELETE, del);
+            }
+            return Json(cm, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -45,14 +45,22 @@
       <DependentUpon>ModelTextTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CommonSearchModel.cs" />
+    <Compile Include="Models\CRUDModel.cs" />
     <Compile Include="Models\PageCriteria.cs" />
     <Compile Include="Models\PageDataView.cs" />
+    <Compile Include="Models\ZtreeMenuModel.cs" />
     <Compile Include="ModelTextTemplate1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelTextTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rel_menuactions.cs">
+      <DependentUpon>ModelTextTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sys_action.cs">
+      <DependentUpon>ModelTextTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Include="sys_menu.cs">
       <DependentUpon>ModelTextTemplate.tt</DependentUpon>
     </Compile>
@@ -68,6 +76,15 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rainbow.Resources\Rainbow.Resources.csproj">
+      <Project>{24bf29ed-d4ae-4fe9-9d22-7fd51d9c4234}</Project>
+      <Name>Rainbow.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="extends\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
