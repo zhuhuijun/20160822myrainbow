@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="ContextFactory.cs" />
     <Compile Include="dalextend\bas_userDal_Extend.cs" />
+    <Compile Include="dalextend\rel_rolemenusDal_Extend.cs" />
     <Compile Include="dalextend\sys_menuDal_Extend.cs" />
     <Compile Include="dal\bas_userDal.cs">
       <DependentUpon>DalTemplate.tt</DependentUpon>
@@ -57,6 +58,9 @@
       <DependentUpon>DalTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="dal\rel_menuactionsDal.cs">
+      <DependentUpon>DalTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dal\rel_rolemenusDal.cs">
       <DependentUpon>DalTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="dal\sys_actionDal.cs">

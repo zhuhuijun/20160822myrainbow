@@ -32,6 +32,10 @@ namespace Rainbow.Models
                     this.status = CommonResource.MenuLinkFlag;
                     this.msg = CommonResource.MenuLink;
                     break;
+                case CRUD.ROLELINK:
+                    this.status = CommonResource.MenuLinkFlag;
+                    this.msg = CommonResource.UserLink;
+                    break;
             }
 
         }
@@ -62,6 +66,12 @@ namespace Rainbow.Models
                 case CRUD.EDIT:
                     cm.msg = res ? CommonResource.EditSuccess : CommonResource.EditError;
                     break;
+                case CRUD.MENUACTION:
+                    cm.msg = res ? CommonResource.MenuActionSuccess : CommonResource.MenuActionError;
+                    break;
+                case CRUD.ROLEMENU:
+                    cm.msg = res ? CommonResource.RoleMenuSuccess : CommonResource.RoleMenuError;
+                    break;
             }
             cm.status = res ? CommonResource.OptionSuccess : CommonResource.ServerError;
             return cm;
@@ -76,7 +86,10 @@ namespace Rainbow.Models
         ADD,
         EDIT,
         DELETE,
-        HAVELINK
+        HAVELINK,//关联数据
+        ROLELINK,//角色下还有使用的用户
+        MENUACTION,//菜单和行为
+        ROLEMENU//角色和菜单
     }
 
 }

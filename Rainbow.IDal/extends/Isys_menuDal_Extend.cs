@@ -16,5 +16,12 @@ namespace Rainbow.IDal
         /// <param name="sql"></param>
         /// <returns></returns>
         List<sys_menu> GetAllWhere(string sql);
+        /// <summary>
+        /// 保存菜单关联的行为
+        /// </summary>
+        /// <param name="menuid">菜单的id</param>
+        /// <param name="actionid">行为的id</param>
+        /// <returns></returns>
+        bool SaveMenuAction(string menuid, List<string> actionid);
     }
 }

@@ -18,6 +18,11 @@ namespace Rainbow.UIs
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+            "Login", // 路由名称
+            "{controller}/{action}", // 带有参数的 URL
+                new { controller = "LoginManager", action = "Login" } // 参数默认值
+            );
         }
     }
 }

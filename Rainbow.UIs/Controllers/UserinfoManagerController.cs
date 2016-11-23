@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Rainbow.Bll;
+using Rainbow.Commons;
 using Rainbow.Models;
 
 namespace Rainbow.UIs.Controllers
@@ -28,7 +29,7 @@ namespace Rainbow.UIs.Controllers
             string page = Request["page"];//当前页
             int pageIndex = Convert.ToInt32(page);//当前页
             PageDataView<bas_user> datas = Bll2bas_user.GetPageData(requestStringPar, "id", 1);
-            var pm = new 
+            var pm = new
             {
                 page = datas.CurrentPage,
                 records = datas.TotalNum,
@@ -43,7 +44,8 @@ namespace Rainbow.UIs.Controllers
         /// <returns></returns>
         public ActionResult AddUI()
         {
-            bas_user user=new bas_user();
+            bas_user user = new bas_user();
+            ViewBag.roles = new SelectList(Bll2sys_role.GetAll(), "id", "rowname");
             return View(user);
         }
         /// <summary>
@@ -54,8 +56,48 @@ namespace Rainbow.UIs.Controllers
         public ActionResult Add(bas_user one)
         {
             one.id = Guid.NewGuid().ToString();
+            one.userpwd = MD5Helper.EncryptString(one.userpwd);
+            one.createdate = DateTime.Now;
             bool add = Bll2bas_user.Insert(one);
             CRUDModel cm = CRUDModelHelper.GetRes(CRUD.ADD, add);
+            return Json(cm, JsonRequestBehavior.AllowGet);
+        }
+        /// <summary>
+        /// 修改界面
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult EditUI(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return RedirectToAction("ParaError", "GlobalPage");
+            }
+            else
+            {
+                bas_user one = Bll2bas_user.GetById(id);
+                ViewBag.roles = new SelectList(Bll2sys_role.GetAll(), "id", "rowname");
+                return View(one);
+            }
+        }
+        /// <summary>
+        /// 修改方法
+        /// </summary>
+        /// <param name="one"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Edit(bas_user one)
+        {
+            var newone = new
+            {
+                roleid = one.roleid,
+                username = one.username,
+                realname = one.realname,
+                phonenum = one.phonenum,
+                emailaddress = one.emailaddress
+            };
+            bool edit = Bll2bas_user.Edit(one.id, newone);
+            CRUDModel cm = CRUDModelHelper.GetRes(CRUD.EDIT, edit);
             return Json(cm, JsonRequestBehavior.AllowGet);
         }
         /// <summary>

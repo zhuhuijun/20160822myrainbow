@@ -19,10 +19,10 @@ namespace Rainbow.UIs
                         "~/Scripts/contabs.js"));
 
             bundles.Add(new StyleBundle("~/main/css").Include(
-                      "~/css/bootstrap.min14ed.css",
-                      "~/css/font-awesome.min93e3.css",
+                      "~/css/bootstrap.min.css",
+                      "~/css/font-awesome.min.css",
                       "~/css/animate.min.css",
-                      "~/css/style.min862f.css",
+                      "~/css/style.min.css",
                       "~/Scripts/plugins/layer/skin/layer.css",
                       "~/Scripts/plugins/layer/laydate/need/laydate.css",
                       "~/Scripts/plugins/layer/laydate/skins/default/laydate.css",

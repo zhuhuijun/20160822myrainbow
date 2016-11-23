@@ -40,6 +40,7 @@ var msgHelper = (function () {
                 swal(data.msg, "", "success");
                 break;
             case "11-002":
+            case "11-003":
             case "11-004":
                 swal(data.msg, "", "error");
                 break;
@@ -237,7 +238,7 @@ var windowHelper = (function () {
      * 修改窗口的触发事件
      * @returns {} 
      */
-    CRUD.fn.EditUIWindow = function() {
+    CRUD.fn.EditUIWindow = function () {
         var that = this;
         var priid = that.options.PrimaryId;
         if (that.CurRow) {
@@ -251,8 +252,8 @@ var windowHelper = (function () {
                         $.post(that.Edit,
                         $(that.options.FormId).serialize(),
                         function (datacall) {
-                            that.CurRow = null;
                             msgHelper.msgcall(datacall);
+                            that.CurRow = null;
                             //刷新数据源
                             $(that.options.GridId).jqGrid('setGridParam', { search: true, mtype: 'POST' }).trigger("reloadGrid", [{ page: 1 }]);
                         });
@@ -274,7 +275,7 @@ var windowHelper = (function () {
         if (that.CurRow) {
             var primaryid = this.CurRow[priid];
             layer.confirm(that.options.DeleteText, {
-                title:'警告',
+                title: '警告',
                 btn: ['确认', '取消'] //按钮
             }, function () {
                 layer.closeAll('dialog'); //关闭信息框
@@ -306,7 +307,61 @@ var windowHelper = (function () {
         currentGrid.jqGrid('setGridParam', { search: true, mtype: 'POST' }).trigger("reloadGrid", [{ page: 1 }]);
         return false;
     };
+    /**
+     * 设置权限的页面
+     * @returns {} 
+     */
+    CRUD.fn.SetPrivilege = function () {
+        var that = this;
+        var priid = that.options.PrimaryId;
+        if (that.CurRow) {
+            var primaryid = this.CurRow[priid];
+            var index = layer.open({
+                type: 2,
+                id: 'myp',
+                title: '分配权限行为窗口',
+                shadeClose: true,
+                shade: 0.3,
+                area: ['400px', '500px'],
+                scrollbar: false,
+                content: '../RoleinfoManager/SetPrivilege/' + primaryid, //iframe的url
+                btn: ['保存', '取消'],
+                yes: function (index, layero) {
+                    var frameid = 'layui-layer-iframe' + index;
+                    var tt = document.getElementById(frameid).contentWindow;
+                    if (tt != null) {
+                        var paramethod = new tt.getParamater();
+                        var menus = paramethod.getmenus();
+                        var roleid = paramethod.getroleid();
+                        var checklength = menus.length;
+                        if (checklength < 1) {
+                            layer.msg("您尚未勾选任何菜单,请重试！", { icon: 2 });
+                            return;
+                        } else {
+                            var menuids = "";
+                            for (var j = 0; j < checklength; j++) {
+                                var yh = menus[j];
+                                menuids += yh.id + ",";
+                            }
+                            var saveur = "../RoleinfoManager/SetPrivilege";
+                            $.post(saveur, { roleid: roleid, menuids: menuids }, function (datacall) {
+                                msgHelper.msgcall(datacall);
+                            });
+                            layer.close(index);
+                        }
 
+                    }
+
+                }, btn2: function (index, layero) {
+                    layer.close(index);
+                }
+            });
+            //layer.full(index);
+        } else {
+            msgHelper.emptySelect();
+        }
+
+    };
     /**
      * 初始化表头的方法
      * @param {} coltitle 
@@ -351,6 +406,9 @@ var windowHelper = (function () {
                     break;
                 case "edit":
                     that.EditUIWindow();
+                    break;
+                case "setprivilege":
+                    that.SetPrivilege();
                     break;
             }
 

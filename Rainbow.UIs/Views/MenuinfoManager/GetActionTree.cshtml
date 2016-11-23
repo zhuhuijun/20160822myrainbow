@@ -1,4 +1,5 @@
 ﻿@using System.Text
+@using Microsoft.Ajax.Utilities
 @using Rainbow.Models
 @{
     Layout = null;
@@ -36,6 +37,7 @@
     @{
         List<sys_menu> nochilds = (List<sys_menu>)ViewBag.NoChilds;
         List<sys_action> actions = (List<sys_action>)ViewBag.Actions;
+        List<rel_menuactions> menuactionses = (List<rel_menuactions>)ViewBag.MenuActions;
     }
     <div class="row">
         <div class="col-sm-12">
@@ -66,7 +68,8 @@
                                                 @{
                                                     foreach (var act in actions)
                                                     {
-                                                        <input type="checkbox" class="checkboxver" value="@act.id"><label class="checkboxverLA">@act.actionname</label>
+                                                        string myid = one.id + act.id;
+                                                        <input type="checkbox" id="@myid" class="checkboxver" value="@act.id"><label class="checkboxverLA">@act.actionname</label>
                                                     }
                                                 }
                                             </td>
@@ -85,12 +88,56 @@
     @Scripts.Render("~/jquery")
     @Scripts.Render("~/bundles/modulejs")
     <script type="text/javascript">
-        var saveOneMenu = function (menuid,cur) {
-            alert($(cur).parent().prev().find("input[type='checkbox']:checked").length);
-            console.info(menuid);
-            //获得当前选中的按钮的值
-            //当前的菜单的值
-            layer.msg('dddddddddddd', { icon: 6 });
+        $(function () {
+            @{
+                foreach (var mm in menuactionses)
+                {
+                    string myid = mm.menuid + mm.actionid;
+                    @Html.Raw("$('#"+myid+"').attr('checked','checked');");
+                }}
+        });
+        var submitMethod = (function () {
+            /*初始化函数*/
+            function MyMethod() {
+
+            }
+            /*保存的路径*/
+            MyMethod.SaveAction = '@Url.Action("GetActionTree","MenuinfoManager")';
+            /*保存后要回掉显示的方法*/
+            MyMethod.msgcall = function (data) {
+                //layer.msg('好的', { icon: 6 });//1.对号2.错误3:问号4:锁屏5:不开心6:开心
+                switch (data.status) {
+                    case "11-001":
+                        layer.msg(data.msg, { icon: 6 });
+                        break;
+                    case "11-002":
+                    case "11-003":
+                    case "11-004":
+                        layer.msg(data.msg, { icon: 2 });
+                        break;
+                }
+            };
+            /*提交行为*/
+            MyMethod.submitAction = function (menuid, curcheck) {
+                var that = this;
+                var actionids = [];
+                for (var j = 0; j < curcheck.length; j++) {
+                    var tmp = curcheck[j];
+                    actionids.push($(tmp).val());
+                }
+                $.post(that.SaveAction, { menuid: menuid, actionids: actionids }, that.msgcall);
+            };
+            /*返回函数*/
+            return MyMethod;
+        })();
+        var saveOneMenu = function (menuid, cur) {
+            var $curChecks = $(cur).parent().prev().find("input[type='checkbox']:checked");
+            if ($curChecks.length < 1) {
+                layer.msg('尚未勾选任何的操作行为,请重试!', { icon: 5 });
+            } else {
+                //获得当前选中的按钮的值
+                submitMethod.submitAction(menuid, $curChecks);
+            }
         };
     </script>
 </body>

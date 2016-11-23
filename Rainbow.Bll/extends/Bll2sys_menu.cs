@@ -48,6 +48,15 @@ namespace Rainbow.Bll
             //3.为无子级的节点元素拼接菜单行为的选项
             return nochilds;
         }
-
+        /// <summary>
+        /// 菜单和行为的关联保存的方法
+        /// </summary>
+        /// <param name="menuid"></param>
+        /// <param name="actionid"></param>
+        /// <returns></returns>
+        public static bool SaveMenuAction(string menuid, List<string> actionid)
+        {
+            return DalFactory.Createsys_menu().SaveMenuAction(menuid,actionid);
+        }
     }
 }

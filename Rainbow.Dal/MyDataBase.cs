@@ -25,10 +25,6 @@ using Rainbow.Models;
      /// </summary>
 	 public Table<sys_role> sys_roles { get; set; }
 	 /// <summary>
-     /// 定义bas_user
-     /// </summary>
-	 public Table<bas_user> bas_users { get; set; }
-	 /// <summary>
      /// 定义sys_action
      /// </summary>
 	 public Table<sys_action> sys_actions { get; set; }
@@ -36,5 +32,13 @@ using Rainbow.Models;
      /// 定义rel_menuactions
      /// </summary>
 	 public Table<rel_menuactions> rel_menuactionss { get; set; }
+	 /// <summary>
+     /// 定义rel_rolemenus
+     /// </summary>
+	 public Table<rel_rolemenus> rel_rolemenuss { get; set; }
+	 /// <summary>
+     /// 定义bas_user
+     /// </summary>
+	 public Table<bas_user> bas_users { get; set; }
 	}
    }

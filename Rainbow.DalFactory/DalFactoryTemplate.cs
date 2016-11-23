@@ -33,14 +33,6 @@ using Rainbow.Dal;
 			return tmp;
 		}
 			/// <summary>
-		/// Ibas_userDal的工厂实现
-		/// </summary>
-		public  static Ibas_userDal Createbas_user()
-		{
-			Ibas_userDal tmp=new bas_userDal();
-			return tmp;
-		}
-			/// <summary>
 		/// Isys_actionDal的工厂实现
 		/// </summary>
 		public  static Isys_actionDal Createsys_action()
@@ -54,6 +46,22 @@ using Rainbow.Dal;
 		public  static Irel_menuactionsDal Createrel_menuactions()
 		{
 			Irel_menuactionsDal tmp=new rel_menuactionsDal();
+			return tmp;
+		}
+			/// <summary>
+		/// Irel_rolemenusDal的工厂实现
+		/// </summary>
+		public  static Irel_rolemenusDal Createrel_rolemenus()
+		{
+			Irel_rolemenusDal tmp=new rel_rolemenusDal();
+			return tmp;
+		}
+			/// <summary>
+		/// Ibas_userDal的工厂实现
+		/// </summary>
+		public  static Ibas_userDal Createbas_user()
+		{
+			Ibas_userDal tmp=new bas_userDal();
 			return tmp;
 		}
 	

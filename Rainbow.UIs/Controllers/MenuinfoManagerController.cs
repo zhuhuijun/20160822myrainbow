@@ -166,13 +166,35 @@ namespace Rainbow.UIs.Controllers
         /// 获得菜单下绑定的按钮的界面
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public ActionResult GetActionTree()
         {
             List<sys_menu> menus = Bll2sys_menu.GetTreeNodes();
             List<sys_action> actions = Bll2sys_action.GetAll();
+            List<rel_menuactions> menuactions = Bll2rel_menuactions.GetAll();
             ViewBag.NoChilds = menus;
             ViewBag.Actions = actions;
+            ViewBag.MenuActions = menuactions;
             return View();
+        }
+        /// <summary>
+        /// 保存菜单和按钮的关联数据
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetActionTree(string menuid,List<String> actionids)
+        {
+            CRUDModel cm = null;
+            if (string.IsNullOrEmpty(menuid)||actionids==null||actionids.Count<1)
+            {
+                cm = new CRUDModel();
+            }
+            else
+            {
+                bool add = Bll2sys_menu.SaveMenuAction(menuid, actionids);
+                cm = CRUDModelHelper.GetRes(CRUD.MENUACTION, add);
+            }
+            return Json(cm, JsonRequestBehavior.DenyGet);
         }
     }
 }

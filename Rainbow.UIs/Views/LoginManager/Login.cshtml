@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+}
+@model Rainbow.Models.UserLoginModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href='@Url.Content("img/favicon.png")' type="image/png">
+    <title>H+ 后台主题UI框架 - 登录</title>
+    <link href='@Url.Content("~/css/bootstrap.min.css")' rel="stylesheet" />
+    <link href='@Url.Content("~/css/font-awesome.min.css")' rel="stylesheet" />
+    <link href='@Url.Content("~/css/animate.min.css")' rel="stylesheet" />
+    <link href='@Url.Content("~/css/style.min.css")' rel="stylesheet" />
+    <link href='@Url.Content("~/css/login.min.css")' rel="stylesheet"/>
+    <link href='@Url.Content("~/css/plugins/toastr/toastr.min.css")' rel="stylesheet" />
+    <script src='@Url.Content("~/Scripts/jquery.min.js")'></script>
+    <script src='@Url.Content("~/Scripts/plugins/layer/layer.min.js")'></script>
+    <script src='@Url.Content("~/Scripts/plugins/toastr/toastr.min.js")'></script>
+</head>
+<body class="signin">
+    <div class="signinpanel">
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="signin-info">
+                    <div class="logopanel m-b">
+                        <h1><span>[ H+ ]</span></h1>
+                    </div>
+                    <div class="m-b"></div>
+                    <h4>欢迎使用 <strong>H+ 后台主题UI框架</strong></h4>
+                    <ul class="m-b">
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势一</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势二</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势三</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势四</li>
+                        <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势五</li>
+                    </ul>
+                    <strong>还没有账号？ <a href="#">立即注册&raquo;</a></strong>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                @using (Html.BeginForm("Login", "LoginManager", FormMethod.Post))
+            {
+                    <h4 class="no-margins">登录：</h4>
+                    <p class="m-t-md">登录到H+后台主题UI框架</p>
+                    @Html.TextBoxFor(m => m.UserName, new Dictionary<string, object>() { { "placeholder", "用户名" }, { "class", "form-control uname" }, {"required","true"} })
+
+                    @Html.PasswordFor(m => m.Password, new Dictionary<string, object>() { { "placeholder", "密码" }, { "class", "form-control pword m-b" } })
+
+                    <a href="">忘记密码了？</a>
+                    <button class="btn btn-success btn-block" type="button" id="btnlogin">登录</button>
+                }
+            </div>
+        </div>
+        <div class="signup-footer">
+            <div class="pull-left">
+                &copy; 2015 All Rights Reserved. 北京恒亿慧通科技
+            </div>
+        </div>
+    </div>
+    <script src='@Url.Content("~/Scripts/myjs/LoginPage.js")'></script>
+    @Html.Raw("<script type='text/javascript'>$(function () {errorTip('" + Model.ErrorMsg + "');});</script>")
+</body>
+</html>

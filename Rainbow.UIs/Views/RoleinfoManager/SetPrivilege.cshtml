@@ -1,0 +1,99 @@
+﻿@using Rainbow.Models
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>为角色设置权限的页面</title>
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/css/animate.min.css" rel="stylesheet" />
+    <link href="~/css/style.min.css" rel="stylesheet" />
+    <link href="~/css/ztree/metroStyle/metroStyle.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="content_wrap" style="overflow: hidden;">
+        <ul id="treeDemo" class="ztree"></ul>
+    </div>
+    <input type="hidden" id="roleid" value="@ViewBag.roleid" />
+</body>
+<!-- 全局js -->
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/ztree/jquery.ztree.core.js"></script>
+<script src="~/Scripts/ztree/jquery.ztree.excheck.js"></script>
+<script src="~/Scripts/jquery.nicescroll.js"></script>
+<script type="text/javascript">
+    var setting = {
+        view: {
+            selectedMulti: false
+        },
+        check: {
+            enable: true
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+    };
+  @{
+       List<ZtreeMenuModel> trees = (List<ZtreeMenuModel>)@ViewBag.TreeDatas;
+        var treesleng = trees.Count;
+    }
+    var zNodes1 = [
+        @{
+            foreach (var tm in @trees)
+                {
+                    @Html.Raw("{ id: '" + tm.id + "', pId: '" + tm.pid + "', name: '" + tm.name + "',open:true,isParent:"+tm.isparent.ToString().ToLower()+ ",checked:"+ tm.ischeck.ToString().ToLower() + "},");
+                }
+            }
+        ];
+    //滚动条
+    $(document).ready(function() {
+        $("html body").niceScroll({
+            cursorcolor: "#FF0000",
+            cursoropacitymax: 1,
+            touchbehavior: false,
+            cursorwidth: "10px",
+            cursorborder: "0",
+            cursorborderradius: "5px"
+        });
+    });
+    ////设置菜单的关联功能
+    function setCheck() {
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+            type = { "Y": "ps", "N": "ps" };
+        zTree.setting.check.chkboxType = type;
+    }
+    $(document).ready(function () {
+        $.fn.zTree.init($("#treeDemo"), setting, zNodes1);
+        $("#py").bind("change", setCheck);
+        $("#sy").bind("change", setCheck);
+        $("#pn").bind("change", setCheck);
+        $("#sn").bind("change", setCheck);
+    });
+    window.getParamater = (function() {
+        function paramater() {
+            
+        }
+        paramater.fn=paramater.prototype;
+        paramater.fn.getmenus = function() {
+            var tt = $.fn.zTree.getZTreeObj("treeDemo").getCheckedNodes();
+            if (tt.length < 1) {
+                return [];
+            } else {
+                return tt;
+            }
+        };
+        paramater.fn.getroleid = function () {
+            return $("#roleid").val();
+        };
+        return paramater;
+    })();
+</script>
+</html>

@@ -4,7 +4,7 @@
 }
 @model Rainbow.Models.sys_menu
 <form id="formui">
-    <input type="hidden" id="pid" name="pid" value="0"/>
+    <input type="hidden" id="pid" name="pid" value="@Model.pid"/>
     @Html.HiddenFor(m=>m.id)
     <div class="modal-body form-horizontal">
         <div class="col-md-12">

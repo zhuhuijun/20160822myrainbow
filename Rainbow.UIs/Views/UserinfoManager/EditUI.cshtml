@@ -1,0 +1,79 @@
+﻿@{
+    Layout = null;
+}
+@model Rainbow.Models.bas_user
+<style type="text/css">
+    .row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+</style>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            @*<div class="ibox-title">
+                    <h5>固件详情</h5>
+                </div>*@
+            <div class="ibox-content">
+                <form id="formui">
+                    @Html.HiddenFor(m=>m.id)
+                    <div class="modal-body form-horizontal">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">用户名:</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(m => m.username, new Dictionary<string, object>
+                                        () {{"required", ""}, {"class", "form-control"}})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body form-horizontal">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">真实姓名:</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(m => m.realname, new Dictionary<string, object>
+                                        () {{"required", ""}, {"class", "form-control"}})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body form-horizontal">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">邮箱:</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(m => m.emailaddress, new Dictionary<string, object>
+                                        () {{"required", ""}, {"class", "form-control"}})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body form-horizontal">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">电话号码:</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(m => m.phonenum, new Dictionary<string, object>
+                                        () {{"required", ""}, {"class", "form-control"}})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body form-horizontal">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">角色:</label>
+                                <div class="col-sm-9">
+                                    @Html.DropDownListFor(model => model.roleid, (SelectList) ViewBag.roles, new {@class = "form-control m-b"})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

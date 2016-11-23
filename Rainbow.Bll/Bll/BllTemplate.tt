@@ -156,7 +156,8 @@ namespace Rainbow.Bll
         /// <returns></returns>
         public static List<<#=tb_name#>> GetWhere(dynamic wherela)
         {
-            return DalFactory.Create<#=tb_name#>().GetWhere(wherela).ToList();
+            var tt =  DalFactory.Create<#=tb_name#>().GetWhere(wherela);
+			return tt;
         }
         /// <summary>
         /// 按条件获得数量

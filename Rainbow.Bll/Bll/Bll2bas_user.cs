@@ -2,7 +2,7 @@
  * 此代码由T4模板自动生成
  * 对此文件的更改可能会导致不正确的行为，并且如果
  * 重新生成代码，这些更改将会丢失。
- * 日期:2016-09-24 17:26:30
+ * 日期:2016-11-21 14:36:54
  * 作者:huijun zhu<kngcbzdsn@outlook.com> 
  * 此技术信息为本公司机密信息，未经本公司书面同意禁止向第三方披露．　                   
  * 版权所有：榆钱（北京）科技有限公司　　　　　　          
@@ -124,7 +124,8 @@ namespace Rainbow.Bll
         /// <returns></returns>
         public static List<bas_user> GetWhere(dynamic wherela)
         {
-            return DalFactory.Createbas_user().GetWhere(wherela).ToList();
+            var tt =  DalFactory.Createbas_user().GetWhere(wherela);
+			return tt;
         }
         /// <summary>
         /// 按条件获得数量

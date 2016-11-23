@@ -57,7 +57,7 @@
                                 <label class="col-sm-4 control-label tr">用户名</label>
 
                                 <div class="col-sm-8">
-                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "用户名" })
+                                    @Html.TextBoxFor(m => m.username, new { @class = "form-control", @placeholder = "用户名" })
                                     <input type="hidden" id="UserNameSearch" value="like" />
                                 </div>
                             </div>
@@ -94,13 +94,14 @@
         //构造crud的对象
         var mycrud = new crud('@Url.Action("GetData", "UserinfoManager")');
         //表头
-        var coltitle = ['', '登陆名', '邮箱', '电话号码'];
+        var coltitle = ['', '登陆名','真实姓名', '邮箱', '电话号码'];
         //表体列绑定
         var cols = [
                 { name: 'id', index: 'id', hidden: true },
-                { name: 'UserName', index: 'UserName', width: 90 },
-                { name: 'Email', index: 'Email' },
-                { name: 'PhoneNum', index: 'PhoneNum' }];
+                { name: 'username', index: 'username', width: 90 },
+                { name: 'realname', index: 'realname', width: 90 },
+                { name: 'emailaddress', index: 'emailaddress' },
+                { name: 'phonenum', index: 'phonenum' }];
         //初始化表格的地方
         mycrud.initTableCol(coltitle, cols);
         //绑定页面的缩放事件

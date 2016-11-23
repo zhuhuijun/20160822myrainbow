@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="extends\Ibas_userDal_Extend.cs" />
+    <Compile Include="extends\Irel_rolemenusDal_Extend.cs" />
     <Compile Include="extends\Isys_menuDal_Extend.cs" />
     <Compile Include="idal\bas_userDal.cs">
       <DependentUpon>IDalNewTemplate.tt</DependentUpon>
@@ -52,6 +53,9 @@
       <DependentUpon>IDalNewTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="idal\rel_menuactionsDal.cs">
+      <DependentUpon>IDalNewTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="idal\rel_rolemenusDal.cs">
       <DependentUpon>IDalNewTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="idal\sys_actionDal.cs">

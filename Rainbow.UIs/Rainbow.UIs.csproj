@@ -119,9 +119,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ActioninfoManagerController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\GlobalPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginManagerController.cs" />
     <Compile Include="Controllers\MenuinfoManagerController.cs" />
     <Compile Include="Controllers\RoleinfoManagerController.cs" />
     <Compile Include="Controllers\UserinfoManagerController.cs" />
@@ -135,6 +135,7 @@
     <Content Include="css\animate.css" />
     <Content Include="css\animate.min.css" />
     <Content Include="css\awwwards.css" />
+    <Content Include="css\bootstrap-rtl.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\bootstrap.min14ed.css" />
     <Content Include="css\demo\webuploader-demo.min.css" />
@@ -143,6 +144,7 @@
     <Content Include="css\font-awesome.css" />
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\font-awesome.min93e3.css" />
+    <Content Include="css\login.css" />
     <Content Include="css\login.min.css" />
     <Content Include="css\multiselect.css" />
     <Content Include="css\patterns\header-profile-skin-1.png" />
@@ -212,6 +214,7 @@
     <Content Include="css\style.min.css" />
     <Content Include="css\style.min862f.css" />
     <Content Include="css\uploadify.css" />
+    <Content Include="css\Validate\bvalidator.css" />
     <Content Include="css\ztree\awesomeStyle\awesome.css" />
     <Content Include="css\ztree\awesomeStyle\img\loading.gif" />
     <Content Include="css\ztree\demo.css" />
@@ -296,14 +299,18 @@
     <Content Include="Scripts\fibersensing.min.js" />
     <Content Include="Scripts\fileinput.min.js" />
     <Content Include="Scripts\fileinput_locale_zh.js" />
+    <Content Include="Scripts\hplus.js" />
     <Content Include="Scripts\hplus.min.js" />
     <Content Include="Scripts\jquery-migrate-1.2.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
     <Content Include="Scripts\jquery-ui.custom.min.js" />
+    <Content Include="Scripts\jquery.bvalidator.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.multi-select.js" />
+    <Content Include="Scripts\jquery.nicescroll.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\myjs\commoncrud.js" />
+    <Content Include="Scripts\myjs\LoginPage.js" />
     <Content Include="Scripts\myjs\menucrud.js" />
     <Content Include="Scripts\myjs\mian.js" />
     <Content Include="Scripts\myjs\supportbrowser.js" />
@@ -693,6 +700,7 @@
     <Content Include="Scripts\treegrid\jquery.ui.css" />
     <Content Include="Scripts\welcome.min.js" />
     <Content Include="Scripts\ztree\jquery.ztree.core.js" />
+    <Content Include="Scripts\ztree\jquery.ztree.excheck.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="sweetalert.html" />
     <Content Include="Web.config">
@@ -751,9 +759,6 @@
   <ItemGroup>
     <Content Include="Scripts\plugins\layer\laydate-v1.1.zip" />
     <Content Include="Scripts\plugins\layer\laydate-v1.1\layDate官网.url" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Admin\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\UserinfoManager\Index.cshtml" />
@@ -855,6 +860,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\MenuinfoManager\GetActionTree.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\RoleinfoManager\SetPrivilege.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\UserinfoManager\EditUI.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\LoginManager\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Test.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

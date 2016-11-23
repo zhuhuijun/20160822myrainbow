@@ -115,6 +115,33 @@ namespace Rainbow.Resources {
         }
         
         /// <summary>
+        ///   查找类似 用户名或者密码错误! 的本地化字符串。
+        /// </summary>
+        public static string LoginErrorUserNameOrPassword {
+            get {
+                return ResourceManager.GetString("LoginErrorUserNameOrPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 很遗憾,菜单与行为绑定失败! 的本地化字符串。
+        /// </summary>
+        public static string MenuActionError {
+            get {
+                return ResourceManager.GetString("MenuActionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 恭喜你,菜单与行为绑定成功! 的本地化字符串。
+        /// </summary>
+        public static string MenuActionSuccess {
+            get {
+                return ResourceManager.GetString("MenuActionSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 尚有关联的子级,无法删除数据! 的本地化字符串。
         /// </summary>
         public static string MenuLink {
@@ -160,11 +187,38 @@ namespace Rainbow.Resources {
         }
         
         /// <summary>
+        ///   查找类似 很遗憾,当前角色的菜单设置失败! 的本地化字符串。
+        /// </summary>
+        public static string RoleMenuError {
+            get {
+                return ResourceManager.GetString("RoleMenuError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 恭喜你,当前角色的菜单设置成功! 的本地化字符串。
+        /// </summary>
+        public static string RoleMenuSuccess {
+            get {
+                return ResourceManager.GetString("RoleMenuSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 11-004 的本地化字符串。
         /// </summary>
         public static string ServerError {
             get {
                 return ResourceManager.GetString("ServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 此角色尚有关联的用户,无法进行删除操作! 的本地化字符串。
+        /// </summary>
+        public static string UserLink {
+            get {
+                return ResourceManager.GetString("UserLink", resourceCulture);
             }
         }
     }

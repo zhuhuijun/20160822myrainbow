@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Rainbow.Bll;
+using Rainbow.Bll.extends;
 using Rainbow.Models;
 
 namespace Rainbow.UIs.Controllers
@@ -100,10 +101,58 @@ namespace Rainbow.UIs.Controllers
             }
             else
             {
-                bool del = Bll2sys_role.Delete(id);
-                cm = CRUDModelHelper.GetRes(CRUD.DELETE, del);
+                int usercount = Bll2bas_user.GetWhereCount(new {roleid = id});
+                if (usercount > 0)
+                {
+                    cm = new CRUDModel(CRUD.ROLELINK);
+                }
+                else
+                {
+                    bool del = Bll2rel_rolemenus.DeleteRole(id);
+                    cm = CRUDModelHelper.GetRes(CRUD.DELETE, del);
+                }
+
             }
             return Json(cm, JsonRequestBehavior.AllowGet);
+        }
+        /// <summary>
+        /// 创建角色分配菜单视图的界面
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult SetPrivilege(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return RedirectToAction("ParaError", "GlobalPage");
+            }
+            else
+            {
+                ViewBag.roleid = id;
+                ViewBag.TreeDatas = Bll2RoleinfoTree.GetZTreeDatas(id);
+                return View();
+            }
+        }
+        /// <summary>
+        /// 保存角色的菜单值
+        /// </summary>
+        /// <param name="roleid"></param>
+        /// <param name="menuids"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult SetPrivilege(string roleid, string menuids)
+        {
+            CRUDModel cm = null;
+            if (string.IsNullOrEmpty(roleid) || string.IsNullOrEmpty(menuids))
+            {
+                cm = new CRUDModel();
+            }
+            else
+            {
+                bool flag = Bll2rel_rolemenus.SaveRoleMenu(roleid, menuids);
+                cm = CRUDModelHelper.GetRes(CRUD.ROLEMENU, flag);
+            }
+            return Json(cm, JsonRequestBehavior.DenyGet);
         }
     }
 }
