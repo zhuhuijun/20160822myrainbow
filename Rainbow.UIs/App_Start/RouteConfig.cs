@@ -16,7 +16,7 @@ namespace Rainbow.UIs
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "LoginManager", action = "Login", id = UrlParameter.Optional }
             );
             routes.MapRoute(
             "Login", // 路由名称

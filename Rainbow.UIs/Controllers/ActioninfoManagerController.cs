@@ -5,14 +5,20 @@ using System.Web;
 using System.Web.Mvc;
 using Rainbow.Bll;
 using Rainbow.Models;
+using Rainbow.UIs.Models;
+using WebUtility;
+using WebUtility.Security;
 
 namespace Rainbow.UIs.Controllers
 {
-    public class ActioninfoManagerController : Controller
+    [RequireAuthorize]
+    public class ActioninfoManagerController : WebControllerBase
     {
         // GET: ActioninfoManager
         public ActionResult Index()
         {
+            string btns = BtnCreate.GetBtn("actioninfomanager");
+            ViewBag.Btns = btns;
             return View();
         }
         /// <summary>
@@ -38,7 +44,7 @@ namespace Rainbow.UIs.Controllers
         /// 添加用户的界面
         /// </summary>
         /// <returns></returns>
-        public ActionResult AddUI()
+        public ActionResult Add()
         {
             sys_action one = new sys_action();
             return View(one);
@@ -48,6 +54,7 @@ namespace Rainbow.UIs.Controllers
         /// </summary>
         /// <param name="one"></param>
         /// <returns></returns>
+        [HttpPost]
         public ActionResult Add(sys_action one)
         {
             one.id = Guid.NewGuid().ToString();
@@ -61,7 +68,7 @@ namespace Rainbow.UIs.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult EditUI(string id)
+        public ActionResult Edit(string id)
         {
             if (string.IsNullOrEmpty(id))
             {

@@ -22,7 +22,7 @@ namespace Rainbow.Dal
         /// <param name="rolemenus"></param>
         /// <param name="roleid">角色id</param>
         /// <returns></returns>
-        public bool SaveRoleMenu(List<rel_rolemenus> rolemenus,string roleid)
+        public bool SaveRoleMenu(List<rel_rolemenus> rolemenus, string roleid)
         {
             bool flag = false;
             using (IDbConnection conn = new SqlConnection(ContextFactory.ConnectionString))
@@ -86,6 +86,21 @@ namespace Rainbow.Dal
                 conn.Close();
             }
             return flag;
+        }
+        /// <summary>
+        /// 根据角色获得控制器和actions
+        /// </summary>
+        /// <param name="roleid">角色id</param>
+        /// <returns></returns>
+        public List<rel_rolemenus> GetControllerAndActions(string roleid)
+        {
+            using (var sqlConnection = ContextFactory.GetContext())
+            {
+                string sql = string.Format("SELECT menuid FROM rel_rolemenus WHERE roleid='{0}' AND menuid  LIKE '%*%' ", roleid);
+                sqlConnection.Open();
+                List<rel_rolemenus> rolemenus = sqlConnection.Query<rel_rolemenus>(sql).ToList();
+                return rolemenus;
+            }
         }
     }
 }

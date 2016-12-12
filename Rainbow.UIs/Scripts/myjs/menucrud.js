@@ -116,9 +116,7 @@
                 'AddBtn': ['保存', '取消'],
                 'PrimaryId': 'id'
             };
-            this.AddUI = "../MenuinfoManager/AddUI";
             this.Add = "../MenuinfoManager/Add";
-            this.EditUI = "../MenuinfoManager/EditUI";
             this.Edit = "../MenuinfoManager/Edit";
             this.DeleteUrl = "../MenuinfoManager/Delete";
         };
@@ -131,7 +129,7 @@
             var that = this;
             $.ajax({
                 type: "GET",
-                url: that.AddUI,
+                url: that.Add,
                 success: function (data) {
                     windowhelper.showUI(data, that.defaults, function () {
                         $.post(that.Add,
@@ -158,7 +156,7 @@
             if (primaryid) {
                 $.ajax({
                     type: "GET",
-                    url: that.EditUI,
+                    url: that.Edit,
                     data:{ id: primaryid },
                     success: function (data) {
                         var calback = function() {
@@ -285,7 +283,7 @@
                 case "menutree":
                     crud.GetMenuTree();
                     break;
-                case "act"://分配操作行为的界面
+                case "getactiontree"://分配操作行为的界面
                     crud.GetActionTree();
                     break;
             }

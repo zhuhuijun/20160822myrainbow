@@ -6,17 +6,24 @@ using System.Web.Mvc;
 using Rainbow.Bll;
 using Rainbow.Commons;
 using Rainbow.Models;
+using Rainbow.UIs.Models;
+using WebUtility;
+using WebUtility.Security;
 
 namespace Rainbow.UIs.Controllers
 {
     /// <summary>
     /// 用户管理的控制器
     /// </summary>
-    public class UserinfoManagerController : Controller
+    [RequireAuthorize]
+    public class UserinfoManagerController : WebControllerBase
     {
         // GET: UserinfoManager
         public ActionResult Index()
         {
+            string btns = BtnCreate.GetBtn("userinfomanager");
+            ViewBag.Btns = btns;
+            //根据控制器去生成该页面的按钮
             return View();
         }
         /// <summary>
@@ -42,7 +49,7 @@ namespace Rainbow.UIs.Controllers
         /// 添加用户的界面
         /// </summary>
         /// <returns></returns>
-        public ActionResult AddUI()
+        public ActionResult Add()
         {
             bas_user user = new bas_user();
             ViewBag.roles = new SelectList(Bll2sys_role.GetAll(), "id", "rowname");
@@ -53,6 +60,7 @@ namespace Rainbow.UIs.Controllers
         /// </summary>
         /// <param name="one"></param>
         /// <returns></returns>
+        [HttpPost]
         public ActionResult Add(bas_user one)
         {
             one.id = Guid.NewGuid().ToString();
@@ -67,7 +75,7 @@ namespace Rainbow.UIs.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult EditUI(string id)
+        public ActionResult Edit(string id)
         {
             if (string.IsNullOrEmpty(id))
             {

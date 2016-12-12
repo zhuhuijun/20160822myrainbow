@@ -8,6 +8,7 @@ using Rainbow.Bll;
 using Rainbow.Commons;
 using Rainbow.Models;
 using Rainbow.Resources;
+using Rainbow.UIs.Models;
 
 namespace Rainbow.UIs.Controllers
 {
@@ -16,10 +17,10 @@ namespace Rainbow.UIs.Controllers
     /// </summary>
     public class LoginManagerController : Controller
     {
-        bool isLogin = false;
         // GET: LoginManager
         public ActionResult Login(UserLoginModel user)
         {
+            bool isLogin = false;
             if (User.Identity.IsAuthenticated)
             {
                 return Redirect(Url.Action("Index", "Home"));
@@ -27,12 +28,17 @@ namespace Rainbow.UIs.Controllers
             else
             {
                 bas_user sysUser = null;
+
                 if (!string.IsNullOrEmpty(user.UserName) && !string.IsNullOrEmpty(user.Password))
                 {
-                    sysUser = Bll2bas_user.GetWhere(new { username = user.UserName, userpwd = MD5Helper.EncryptString(user.Password) }).ToList().FirstOrDefault();
-                    if (sysUser != null)
+                    AccountModel amodel = new AccountModel();
+                    bas_user usercurr = amodel.ValidateUserLogin(user.UserName, user.Password);
+                    if (usercurr != null)
                     {
-                        FormsAuthentication.SetAuthCookie(sysUser.id + "|" + sysUser.username + "|" + sysUser.userpwd, false);
+                        //创建用户ticket信息
+                        amodel.CreateLoginUserTicket(user.UserName, user.Password);
+                        //读取用户权限数据
+                        amodel.GetUserAuthorities(usercurr.roleid);
                         return Redirect(Url.Action("Index", "Home"));
                     }
                     else

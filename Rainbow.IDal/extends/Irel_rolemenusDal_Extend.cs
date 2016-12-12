@@ -26,5 +26,11 @@ namespace Rainbow.IDal
         /// <param name="roleid"></param>
         /// <returns></returns>
         bool DeleteRole(string roleid);
+        /// <summary>
+        /// 获得控制器和角色
+        /// </summary>
+        /// <param name="roleid"></param>
+        /// <returns></returns>
+        List<rel_rolemenus> GetControllerAndActions(string roleid);
     }
 }

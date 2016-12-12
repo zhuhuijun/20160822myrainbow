@@ -21,9 +21,7 @@
                     <div class="ibox-title">
                         <h5><i class="fa fa-tasks"></i> 系统用户管理</h5>
                         <p class="pull-right">
-                            <button class="btn btn-success btn-xs op" op="add"><i class="fa fa-plus"></i> 新增</button>
-                            <button type="button" id="paixu" class="btn btn-primary btn-xs op" op="edit"><i class="fa fa-sort-amount-asc"></i> 修改</button>
-                            <button type="button" class="btn btn-danger btn-xs op" op="delete"><i class="fa fa-sort-amount-asc"></i> 删除</button>
+                            @Html.Raw(@ViewBag.Btns)
                         </p>
                     </div>
                     <div class="ibox-content">

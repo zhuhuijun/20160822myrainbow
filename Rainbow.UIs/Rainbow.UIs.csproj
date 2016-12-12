@@ -44,6 +44,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="ServiceStack.Text, Version=4.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.4.5.4\lib\net45\ServiceStack.Text.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -124,10 +128,13 @@
     <Compile Include="Controllers\LoginManagerController.cs" />
     <Compile Include="Controllers\MenuinfoManagerController.cs" />
     <Compile Include="Controllers\RoleinfoManagerController.cs" />
+    <Compile Include="Controllers\SysCommController.cs" />
     <Compile Include="Controllers\UserinfoManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\BtnCreate.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -259,7 +266,9 @@
     <Content Include="img\avatar_default.gif" />
     <Content Include="img\bg.png" />
     <Content Include="img\bg_repno.gif" />
+    <Content Include="img\bj.png" />
     <Content Include="img\button.png" />
+    <Content Include="img\cw4.png" />
     <Content Include="img\favicon.ico" />
     <Content Include="img\iconfont-logo.png" />
     <Content Include="img\icons.png" />
@@ -803,19 +812,23 @@
       <Project>{24bf29ed-d4ae-4fe9-9d22-7fd51d9c4234}</Project>
       <Name>Rainbow.Resources</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebUtility\WebUtility.csproj">
+      <Project>{e1e16f86-ef90-44c0-b424-1b7fd01c1a51}</Project>
+      <Name>WebUtility</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\plugins\suggest\data.json" />
     <Content Include="Scripts\plugins\webuploader\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\UserinfoManager\AddUI.cshtml" />
+    <Content Include="Views\UserinfoManager\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\RoleinfoManager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\RoleinfoManager\AddUI.cshtml" />
+    <Content Include="Views\RoleinfoManager\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -828,16 +841,16 @@
     <Content Include="Views\ActioninfoManager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ActioninfoManager\AddUI.cshtml" />
+    <Content Include="Views\ActioninfoManager\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\RoleinfoManager\EditUI.cshtml" />
+    <Content Include="Views\RoleinfoManager\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\GlobalPage\ParaError.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ActioninfoManager\EditUI.cshtml" />
+    <Content Include="Views\ActioninfoManager\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\MenuinfoManager\Index.cshtml" />
@@ -846,10 +859,10 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\MenuinfoManager\EditUI.cshtml" />
+    <Content Include="Views\MenuinfoManager\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\MenuinfoManager\AddUI.cshtml" />
+    <Content Include="Views\MenuinfoManager\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\MenuinfoManager\GetTree.cshtml" />
@@ -865,13 +878,16 @@
     <Content Include="Views\RoleinfoManager\SetPrivilege.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\UserinfoManager\EditUI.cshtml" />
+    <Content Include="Views\UserinfoManager\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\LoginManager\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Test.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SysComm\UnAuthorized.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -23,5 +23,11 @@ namespace Rainbow.IDal
         /// <param name="actionid">行为的id</param>
         /// <returns></returns>
         bool SaveMenuAction(string menuid, List<string> actionid);
+        /// <summary>
+        /// 根据角色获得菜单不包含行为
+        /// </summary>
+        /// <param name="roleid">角色id</param>
+        /// <returns></returns>
+        List<sys_menu> GetMenuByRoleId(string roleid);
     }
 }

@@ -143,9 +143,9 @@ var windowHelper = (function () {
      * 操作路径的
      */
     var OptionObj = {
-        EditUI: 'EditUI',
+        EditUI: 'Edit',
         Edit: 'Edit',
-        AddUI: 'AddUI',
+        AddUI: 'Add',
         Add: 'Add',
         DeleteUrl: 'Delete'
     };

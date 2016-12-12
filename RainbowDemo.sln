@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rainbow.Commons", "Rainbow.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rainbow.Resources", "Rainbow.Resources\Rainbow.Resources.csproj", "{24BF29ED-D4AE-4FE9-9D22-7FD51D9C4234}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rainbow.WebUtility", "Rainbow.WebUtility\Rainbow.WebUtility.csproj", "{F0BDE314-77D9-409E-9D75-55967C0E915F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUtility", "WebUtility\WebUtility.csproj", "{E1E16F86-EF90-44C0-B424-1B7FD01C1A51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +79,14 @@ Global
 		{24BF29ED-D4AE-4FE9-9D22-7FD51D9C4234}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24BF29ED-D4AE-4FE9-9D22-7FD51D9C4234}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24BF29ED-D4AE-4FE9-9D22-7FD51D9C4234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0BDE314-77D9-409E-9D75-55967C0E915F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0BDE314-77D9-409E-9D75-55967C0E915F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0BDE314-77D9-409E-9D75-55967C0E915F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0BDE314-77D9-409E-9D75-55967C0E915F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1E16F86-EF90-44C0-B424-1B7FD01C1A51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1E16F86-EF90-44C0-B424-1B7FD01C1A51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1E16F86-EF90-44C0-B424-1B7FD01C1A51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1E16F86-EF90-44C0-B424-1B7FD01C1A51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

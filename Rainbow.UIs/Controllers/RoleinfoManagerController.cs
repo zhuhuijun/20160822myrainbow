@@ -6,10 +6,16 @@ using System.Web.Mvc;
 using Rainbow.Bll;
 using Rainbow.Bll.extends;
 using Rainbow.Models;
+using WebUtility;
+using WebUtility.Security;
 
 namespace Rainbow.UIs.Controllers
 {
-    public class RoleinfoManagerController : Controller
+    /// <summary>
+    /// 角色管理
+    /// </summary>
+    [RequireAuthorize]
+    public class RoleinfoManagerController : WebControllerBase
     {
         // GET: RoleinfoManager
         public ActionResult Index()
@@ -39,7 +45,7 @@ namespace Rainbow.UIs.Controllers
         /// 添加用户的界面
         /// </summary>
         /// <returns></returns>
-        public ActionResult AddUI()
+        public ActionResult Add()
         {
             sys_role role = new sys_role();
             return View(role);
@@ -49,6 +55,7 @@ namespace Rainbow.UIs.Controllers
         /// </summary>
         /// <param name="role"></param>
         /// <returns></returns>
+        [HttpPost]
         public ActionResult Add(sys_role role)
         {
             role.id = Guid.NewGuid().ToString();
@@ -62,7 +69,7 @@ namespace Rainbow.UIs.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult EditUI(string id)
+        public ActionResult Edit(string id)
         {
             if (string.IsNullOrEmpty(id))
             {

@@ -48,7 +48,8 @@ namespace Rainbow.Dal
                              VALUES ( @menuid,@actionid,1)";
                     List<rel_menuactions> smalls = actionid.Select(acid => new rel_menuactions()
                     {
-                        menuid = menuid, actionid = acid
+                        menuid = menuid,
+                        actionid = acid
                     }).ToList();
                     conn.Execute(sql, null, trans);
                     if (smalls.Count > 0)
@@ -67,6 +68,21 @@ namespace Rainbow.Dal
             }
             return flag;
 
+        }
+        /// <summary>
+        /// 根据角色获得菜单不包含行为
+        /// </summary>
+        /// <param name="roleid">角色id</param>
+        /// <returns></returns>
+        public List<sys_menu> GetMenuByRoleId(string roleid)
+        {
+            using (var sqlConnection = ContextFactory.GetContext())
+            {
+                string sql = string.Format("SELECT * FROM sys_menu WHERE id IN (SELECT menuid FROM rel_rolemenus WHERE roleid='{0}' AND menuid NOT LIKE '%*%') ", roleid);
+                sqlConnection.Open();
+                List<sys_menu> rolemenus = sqlConnection.Query<sys_menu>(sql).ToList();
+                return rolemenus;
+            }
         }
     }
 }
