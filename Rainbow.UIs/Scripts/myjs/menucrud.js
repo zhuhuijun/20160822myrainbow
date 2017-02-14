@@ -127,21 +127,26 @@
          */
         menucrud.fn.AddUIWindow = function () {
             var that = this;
-            $.ajax({
-                type: "GET",
-                url: that.Add,
-                success: function (data) {
-                    windowhelper.showUI(data, that.defaults, function () {
-                        $.post(that.Add,
-                        $(that.defaults.FormId).serialize(),
-                        function (datacall) {
-                            windowhelper.msgcall(datacall);
-                            //刷新数据源
-                            $(that.defaults.GridId).jqGrid('setGridParam', { search: true, mtype: 'POST' }).trigger("reloadGrid", [{ page: 1 }]);
+            var mmmindex = layer.load();
+            setTimeout(function () {
+                $.ajax({
+                    type: "GET",
+                    url: that.Add,
+                    success: function (data) {
+                        layer.close(mmmindex);
+                        windowhelper.showUI(data, that.defaults, function () {
+                            $.post(that.Add,
+                            $(that.defaults.FormId).serialize(),
+                            function (datacall) {
+                                windowhelper.msgcall(datacall);
+                                //刷新数据源
+                                $(that.defaults.GridId).jqGrid('setGridParam', { search: true, mtype: 'POST' }).trigger("reloadGrid", [{ page: 1 }]);
+                            });
                         });
-                    });
-                }
-            });
+                    }
+                });
+            }, 500);
+
         };
         /**
          * 编辑窗口调用的函数
@@ -154,23 +159,28 @@
             console.info(CurRow);
             var primaryid = CurRow[priid];
             if (primaryid) {
-                $.ajax({
-                    type: "GET",
-                    url: that.Edit,
-                    data:{ id: primaryid },
-                    success: function (data) {
-                        var calback = function() {
-                            $.post(that.Edit,
-                            $(that.defaults.FormId).serialize(),
-                            function (datacall) {
-                                windowhelper.msgcall(datacall);
-                                //刷新数据源
-                                $(that.defaults.GridId).jqGrid('setGridParam', { search: true, mtype: 'POST' }).trigger("reloadGrid", [{ page: 1 }]);
-                            });
-                        };
-                        windowhelper.showUI(data, that.defaults, calback);
-                    }
-                });
+                var mmmindex = layer.load();
+                setTimeout(function () {
+                    $.ajax({
+                        type: "GET",
+                        url: that.Edit,
+                        data: { id: primaryid },
+                        success: function (data) {
+                            layer.close(mmmindex);
+                            var calback = function () {
+                                $.post(that.Edit,
+                                $(that.defaults.FormId).serialize(),
+                                function (datacall) {
+                                    windowhelper.msgcall(datacall);
+                                    //刷新数据源
+                                    $(that.defaults.GridId).jqGrid('setGridParam', { search: true, mtype: 'POST' }).trigger("reloadGrid", [{ page: 1 }]);
+                                });
+                            };
+                            windowhelper.showUI(data, that.defaults, calback);
+                        }
+                    });
+                }, 500);
+
             } else {
                 windowhelper.emptySelect();
             }
@@ -228,7 +238,11 @@
                 shadeClose: true,
                 shade: 0.3,
                 area: ['700px', '500px'],
-                content: '../MenuinfoManager/GetActionTree' //iframe的url
+                content: '../MenuinfoManager/GetActionTree',//iframe的url
+                yes: function (index, layero) {
+                    //do something
+                    layer.close(index); //如果设定了yes回调，需进行手工关闭
+                }
             });
             layer.full(index);
         };
@@ -236,7 +250,7 @@
          * 查询方法
          * @returns {} 
          */
-        menucrud.fn.SearchMethod= function () {
+        menucrud.fn.SearchMethod = function () {
             var that = this;
             var currentGrid = $(that.defaults.GridId);
             var postData = currentGrid.jqGrid("getGridParam", "postData");

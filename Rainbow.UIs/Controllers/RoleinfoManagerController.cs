@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Rainbow.Bll;
 using Rainbow.Bll.extends;
 using Rainbow.Models;
+using Rainbow.UIs.Models;
 using WebUtility;
 using WebUtility.Security;
 
@@ -20,6 +21,8 @@ namespace Rainbow.UIs.Controllers
         // GET: RoleinfoManager
         public ActionResult Index()
         {
+            string btns = BtnCreate.GetBtn("roleinfomanager");
+            ViewBag.Btns = btns;
             return View();
         }
         /// <summary>

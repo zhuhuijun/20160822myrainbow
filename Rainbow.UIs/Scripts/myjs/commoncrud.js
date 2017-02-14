@@ -217,21 +217,25 @@ var windowHelper = (function () {
     */
     CRUD.fn.AddUIWindow = function () {
         var that = this;
-        $.ajax({
-            type: "GET",
-            url: that.AddUI,
-            success: function (data) {
-                windowHelper.addUIWindow(data, that.options, function () {
-                    $.post(that.Add,
-                    $(that.options.FormId).serialize(),
-                    function (datacall) {
-                        msgHelper.msgcall(datacall);
-                        //刷新数据源
-                        $(that.options.GridId).jqGrid('setGridParam', { search: true, mtype: 'POST' }).trigger("reloadGrid", [{ page: 1 }]);
+        var mmmindex = layer.load();
+        setTimeout(function() {
+            $.ajax({
+                type: "GET",
+                url: that.AddUI,
+                success: function (data) {
+                    layer.close(mmmindex);
+                    windowHelper.addUIWindow(data, that.options, function () {
+                        $.post(that.Add,
+                        $(that.options.FormId).serialize(),
+                        function (datacall) {
+                            msgHelper.msgcall(datacall);
+                            //刷新数据源
+                            $(that.options.GridId).jqGrid('setGridParam', { search: true, mtype: 'POST' }).trigger("reloadGrid", [{ page: 1 }]);
+                        });
                     });
-                });
-            }
-        });
+                }
+            });
+        }, 500);
     };
     /**
      * 
@@ -243,23 +247,28 @@ var windowHelper = (function () {
         var priid = that.options.PrimaryId;
         if (that.CurRow) {
             var primaryid = this.CurRow[priid];
-            $.ajax({
-                type: "GET",
-                url: that.EditUI,
-                data: { id: primaryid },
-                success: function (data) {
-                    windowHelper.editUIWindow(data, that.options, function () {
-                        $.post(that.Edit,
-                        $(that.options.FormId).serialize(),
-                        function (datacall) {
-                            msgHelper.msgcall(datacall);
-                            that.CurRow = null;
-                            //刷新数据源
-                            $(that.options.GridId).jqGrid('setGridParam', { search: true, mtype: 'POST' }).trigger("reloadGrid", [{ page: 1 }]);
+            var mmmindex = layer.load();
+            setTimeout(function() {
+                $.ajax({
+                    type: "GET",
+                    url: that.EditUI,
+                    data: { id: primaryid },
+                    success: function (data) {
+                        layer.close(mmmindex);
+                        windowHelper.editUIWindow(data, that.options, function () {
+                            $.post(that.Edit,
+                            $(that.options.FormId).serialize(),
+                            function (datacall) {
+                                msgHelper.msgcall(datacall);
+                                that.CurRow = null;
+                                //刷新数据源
+                                $(that.options.GridId).jqGrid('setGridParam', { search: true, mtype: 'POST' }).trigger("reloadGrid", [{ page: 1 }]);
+                            });
                         });
-                    });
-                }
-            });
+                    }
+                });
+            }, 500);
+
         } else {
             msgHelper.emptySelect();
         }
